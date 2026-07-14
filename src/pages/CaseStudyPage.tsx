@@ -15,13 +15,13 @@ const caseStudyContent: Record<
   }
 > = {
   "governed-ai-finance-workspace": {
-    outcomeLabel: "Governed AI workspace · Proof of concept, 2025–2026",
+    outcomeLabel: "Governed AI workspace · Completed, 2025–2026",
     snapshotFields: [
       { label: "Role", value: "Lead UX / Product Designer" },
       { label: "Employer", value: "Amdocs Studios" },
       { label: "Client", value: "Confidential enterprise telecommunications organization" },
       { label: "Timeframe", value: "2025–2026" },
-      { label: "Status", value: "Proof of concept (ongoing platform vision)" },
+      { label: "Status", value: "Completed" },
       { label: "Tools", value: "Figma, React, Tailwind CSS, Vite" },
     ],
     context:
