@@ -10,7 +10,6 @@ interface MobileNavProps {
 }
 
 const navLinks = [
-  { to: "/", label: "Home" },
   { to: "/work", label: "Work" },
   { to: "/philosophy", label: "Philosophy" },
   { to: "/about", label: "About" },
@@ -91,7 +90,7 @@ export default function MobileNav({ isOpen, onClose, triggerRef }: MobileNavProp
 
         <div className="mt-6 pt-6 border-t border-border">
           <Button to="/contact" variant="primary" fullWidth>
-            Let&apos;s Collaborate
+            Get in Touch
           </Button>
         </div>
       </nav>

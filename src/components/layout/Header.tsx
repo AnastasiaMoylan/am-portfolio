@@ -5,7 +5,6 @@ import Button from "../ui/Button";
 import MobileNav from "./MobileNav";
 
 const navLinks = [
-  { to: "/", label: "Home" },
   { to: "/work", label: "Work" },
   { to: "/philosophy", label: "Philosophy" },
   { to: "/about", label: "About" },
@@ -54,7 +53,7 @@ export default function Header() {
 
         <div className="hidden lg:flex">
           <Button to="/contact" variant="primary">
-            Let&apos;s Collaborate
+            Get in Touch
           </Button>
         </div>
 

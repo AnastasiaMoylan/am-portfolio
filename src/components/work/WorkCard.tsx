@@ -8,7 +8,12 @@ interface WorkCardProps {
 
 export default function WorkCard({ project }: WorkCardProps) {
   return (
-    <article className="bg-card border border-border rounded-md overflow-hidden flex flex-col hover:border-primary transition-colors duration-150">
+    <article className="relative bg-card border border-border rounded-md overflow-hidden flex flex-col hover:border-primary transition-colors duration-150">
+      <Link
+        to={`/work/${project.slug}`}
+        className="absolute inset-0 z-10"
+        aria-label={`Read case study: ${project.title}`}
+      />
       <div
         className="bg-secondary border-b border-border aspect-video flex items-center justify-center text-muted-foreground text-[0.8125rem] text-center p-6"
         role="img"
@@ -21,15 +26,7 @@ export default function WorkCard({ project }: WorkCardProps) {
           <Badge variant="status">{project.status}</Badge>
           <span className="text-[0.8125rem] text-muted-foreground">{project.role}</span>
         </div>
-        <h3 className="text-lg font-semibold leading-[1.3]">
-          <Link
-            to={`/work/${project.slug}`}
-            className="text-foreground hover:text-accent no-underline transition-colors duration-150"
-            aria-label={`Read case study: ${project.title}`}
-          >
-            {project.title}
-          </Link>
-        </h3>
+        <h3 className="text-lg font-semibold leading-[1.3] text-foreground">{project.title}</h3>
         <p className="text-[0.9375rem] text-muted-foreground leading-relaxed">{project.problem}</p>
         <ul className="list-none p-0 m-0 flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
@@ -41,15 +38,9 @@ export default function WorkCard({ project }: WorkCardProps) {
         <p className="text-sm text-muted-foreground italic pt-2 border-t border-border mt-auto">
           {project.outcome}
         </p>
-        <Link
-          to={`/work/${project.slug}`}
-          className="text-[0.9375rem] font-medium text-accent hover:text-foreground no-underline transition-colors duration-150"
-          aria-label={`Read case study: ${project.title}`}
-          tabIndex={-1}
-          aria-hidden="true"
-        >
+        <span className="text-[0.9375rem] font-medium text-accent" aria-hidden="true">
           Read case study &rarr;
-        </Link>
+        </span>
       </div>
     </article>
   );
