@@ -9,22 +9,16 @@ export default function Hero() {
       <div className="content-container grid grid-cols-1S">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent mb-5">
-            Lead Experience Designer &middot; AI and systems
-            design.
+            Lead Experience Designer &middot; AI &amp; Systems Design
           </p>
           <h1
             id="hero-heading"
             className="text-[clamp(2.5rem,7vw,6.5rem)] font-bold leading-[1.05] text-foreground mb-6"
           >
-            Bridging the gap between product and human
-            experience.
+            Designing enterprise systems people can actually trust.
           </h1>
           <p className="text-[clamp(1rem,2vw,1.125rem)] text-muted-foreground leading-[1.7] max-w-[46rem] mb-10">
-            For 10+ years, I&apos;ve turned complex enterprise
-            workflows into clear, trustworthy
-            products&mdash;leading teams and partnering with
-            engineering from early strategy through
-            implementation and quality assurance.
+            10+ years turning complex enterprise workflows into clear, trustworthy products &mdash; leading teams and staying involved from early strategy through implementation and QA.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
             <Button to="/work" variant="primary">

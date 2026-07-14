@@ -5,21 +5,25 @@ const timeline = [
   {
     company: "Amdocs Studios (formerly Stellar Elements)",
     roles: [
-      "Lead Experience Designer — 2025–Present",
-      "Senior Experience Designer — July 2021–July 2025",
+      { title: "Lead Experience Designer", dates: "2025–Present" },
+      { title: "Senior Experience Designer", dates: "July 2021–July 2025" },
     ],
     context:
       "Led design on AI-assisted finance and billing products, enterprise document intelligence, and complex telecommunications CX platforms. Managed designer mentorship, drove product strategy alignment, and owned end-to-end experience across multi-phase engagements.",
   },
   {
     company: "American Airlines",
-    roles: ["Senior Product Designer — December 2019–July 2021"],
+    roles: [
+      { title: "Senior Product Designer", dates: "December 2019–July 2021" },
+    ],
     context:
       "Designed internal operations tooling and crew-facing workflows used across the carrier network. Worked inside a complex org at enterprise scale — coordinating design decisions with operations, IT, and frontline feedback loops.",
   },
   {
     company: "Brinks Home Security",
-    roles: ["Lead UI/UX Designer — June 2015–December 2019"],
+    roles: [
+      { title: "Lead UI/UX Designer", dates: "June 2015–December 2019" },
+    ],
     context:
       "Built and owned the design system from scratch. Delivered customer-facing mobile and web products alongside internal dealer and operations tooling across a full redesign cycle.",
   },
@@ -64,29 +68,47 @@ export default function AboutPage() {
           <SectionBlock label="Who I am">
             <div className="flex flex-col gap-4 text-[1.0625rem] text-muted-foreground leading-[1.75]">
               <p>
-                I design complex enterprise products — AI assistants, financial workflows, document intelligence systems, and operations tooling — and I stay engaged until what ships matches what was designed. That distinction matters. A lot of enterprise design falls apart between Figma and production. I treat implementation as part of my responsibility, not something handoff completes.
+                I design complex enterprise products — AI assistants, workflows, document intelligence systems, and operational tooling — and I stay engaged until what ships matches what was designed. That distinction matters. A lot of enterprise design falls apart between design and production phases.
               </p>
               <p>
-                My background spans B2B SaaS, telecommunications, aviation, and finance. I know how to design for role-based permissions, how to make AI-generated content trustworthy, how to scope a POC that tests the right assumptions, and how to lead a design system that serves a large engineering org without becoming a bottleneck.
+                My background spans B2B SaaS, telecommunications, aviation, and finance. I know how to design for role-based permissions, how to make AI trustworthy, how to scope a POC that tests the right assumptions, and how to lead a design system that serves a large engineering org without becoming a bottleneck.
               </p>
               <p>
-                I also mentor. I lead critique sessions, give feedback that explains reasoning not just corrections, and work to build the judgment of the designers I work alongside — not just their output on a specific project.
+                I also mentor two to three designers at a time. I lead critique sessions, give feedback that explains reasoning — not just corrections — and work to build judgment, not just improve output on a specific project.
               </p>
             </div>
           </SectionBlock>
 
           <SectionBlock label="Career timeline">
-            <ul className="list-none p-0 m-0 flex flex-col gap-8">
-              {timeline.map(({ company, roles, context }) => (
-                <li key={company} className="flex flex-col gap-1.5">
-                  <span className="text-base font-semibold text-foreground">{company}</span>
-                  {roles.map((role) => (
-                    <span key={role} className="text-[0.9375rem] text-foreground/70">{role}</span>
-                  ))}
-                  <p className="text-[0.9375rem] text-muted-foreground leading-[1.65] mt-1">{context}</p>
-                </li>
-              ))}
-            </ul>
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" aria-hidden="true" />
+
+              <ul className="list-none p-0 m-0 flex flex-col gap-10">
+                {timeline.map(({ company, roles, context }) => (
+                  <li key={company} className="relative pl-10 flex flex-col gap-3">
+                    {/* Dot */}
+                    <div
+                      className="absolute left-0 top-[5px] w-[15px] h-[15px] rounded-full bg-primary border-[3px] border-background"
+                      aria-hidden="true"
+                    />
+
+                    {roles.map(({ title, dates }, i) => (
+                      <div key={title} className={i > 0 ? "mt-3 pt-3 border-t border-border" : ""}>
+                        <p className="text-[1.0625rem] font-semibold text-foreground leading-snug">{title}</p>
+                        <div className="flex flex-wrap items-center gap-x-2 mt-0.5">
+                          <span className="text-sm font-medium text-accent">{company}</span>
+                          <span className="text-sm text-muted-foreground">·</span>
+                          <span className="text-sm text-muted-foreground">{dates}</span>
+                        </div>
+                      </div>
+                    ))}
+
+                    <p className="text-[0.9375rem] text-muted-foreground leading-[1.65]">{context}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </SectionBlock>
 
           <SectionBlock label="Domain experience">

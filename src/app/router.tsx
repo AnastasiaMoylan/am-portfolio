@@ -19,10 +19,19 @@ function PageViewTracker() {
   return null;
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 export default function AppRouter() {
   return (
     <>
       <PageViewTracker />
+      <ScrollToTop />
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<HomePage />} />

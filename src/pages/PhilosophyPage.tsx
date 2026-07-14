@@ -1,34 +1,34 @@
 import SectionHeading from "../components/ui/SectionHeading";
 
 const principles = [
-  {
+ {
     title: "Design flows, not screens",
-    body: "A screen is a moment in a sequence. I start by mapping the full flow — the role who acts, the state they start from, every branching path, what happens when something fails, and how the user recovers. Interfaces that work in demos and break under real use almost always skipped this step.",
-  },
-  {
-    title: "Treat implementation as part of the design",
-    body: "A Figma decision that engineering can't deliver in the available time or technology isn't a design decision — it's a deferred negotiation. I stay involved through handoff, sprint reviews, and QA so that compromises are visible, intentional, and tracked — not discovered by accident after launch.",
-  },
-  {
-    title: "Extend the system before inventing a new pattern",
-    body: "Design systems exist to make consistent decisions fast and reduce the cost of change. When a genuinely new pattern is needed, it gets defined, documented, and added to the system — not solved quietly in one component and forgotten. I extend systems rather than work around them.",
-  },
-  {
+    body: "I don't start with the screen. I start by walking the whole flow — who's doing what, where they're coming from, what happens when something breaks, how they get back on track. The stuff that looks great in a demo and falls apart in production almost always skipped that part.",
+},
+{
+    title: "Design through implementation",
+    body: "Design doesn't end at handoff. If engineering can't actually build something in the time or stack they've got, that's not a finished design — it's a decision nobody's made yet. I sit in on sprint reviews and QA on purpose, so those trade-offs get made out loud instead of getting discovered three days before launch.",
+},
+{
+    title: "Design holistically, not in isolation",
+    body: "A pattern rarely stays where you put it. Solve something new in one screen and move on, and someone inherits that inconsistency six months later without knowing why it's there. So new patterns get defined and documented into the system — not quietly worked around.",
+},
+{
     title: "Make AI uncertainty visible — and every consequential action reversible",
-    body: "Generated output needs evidence, not just an answer. Latency and partial results need designed states, not spinners. Actions driven by AI recommendation — especially high-stakes ones — should be reviewable before they execute and recoverable after. The full loop: generate, inspect, edit, approve, monitor.",
-  },
-  {
-    title: "Use critique to sharpen the decision, not defend the artifact",
-    body: "Good critique is about the problem the design is trying to solve, not the design itself. I lead critique by stating the intent and asking whether the work achieves it. Defending a specific solution is less useful than asking whether either option solves the right problem.",
-  },
-  {
-    title: "Mentor through context, not just corrections",
-    body: "Designers improve fastest when they understand why a decision was made — the user evidence, the technical constraint, the stakeholder concern — not just that it was made. I give feedback that explains the reasoning so the designer can apply the same judgment next time, not just fix this one.",
-  },
-  {
-    title: "Change direction when the evidence improves",
-    body: "I've restructured navigation based on usability findings, dropped features after POC tests, and changed comparison layouts after research showed side-by-side outperformed tabs. The goal is better decisions, not consistency with earlier ones. Research that can't change the plan isn't worth running.",
-  },
+    body: "People don't trust AI because it sounds confident — they trust it because they can check the work. Generated output needs to show its reasoning, not just hand over an answer. Loading states need to say what's actually happening, not just spin. And anything AI recommends — especially the high-stakes calls — needs a moment where someone can look at it, edit it, and pull it back if it's wrong.",
+},
+{
+    title: "Critique in service of the decision, not the deliverable",
+    body: "Critique goes sideways the moment it turns into defending a screen. I try to keep it on the problem instead: here's what we were trying to solve, does this actually solve it. Half the time the useful question isn't which option is better — it's whether either one solves the right thing.",
+},
+{
+    title: "Coach judgment, not just output",
+    body: "Telling someone what to fix teaches them to fix that one thing. Telling them why — the research behind it, the constraint that boxed us in, the exec who pushed back — teaches them to make the call themselves next time. That's the feedback I try to actually give.",
+},
+{
+    title: "Continuous improvement, driven by evidence",
+    body: "I've thrown out navigation I liked because usability testing said otherwise. Killed a feature after a POC didn't hold up. Swapped tabs for side-by-side once research showed people actually preferred it. None of that feels great in the moment, but if research can't change my mind, I'm not sure why I ran it.",
+},
 ];
 
 export default function PhilosophyPage() {
@@ -37,13 +37,13 @@ export default function PhilosophyPage() {
       <div className="content-container">
         <SectionHeading
           eyebrow="Design philosophy"
-          title="How I think about this work"
+          title="The whole system, not just the screen"
           subtitle="Seven principles I've tested against real engagements — not a manifesto, but a record of what has consistently produced better outcomes."
         />
 
         <div className="max-w-[52rem] mt-12 pb-12 border-b border-border">
           <blockquote className="text-[clamp(1.25rem,3vw,1.625rem)] font-medium text-foreground leading-[1.5] italic pl-6 border-l-[3px] border-primary">
-            &ldquo;Good product design makes the system understandable&mdash;not only when everything works, but when data is late, AI is uncertain, permissions change, or a user needs to recover.&rdquo;
+            &ldquo; Good product design is what makes a system understandable—getting the flows right, designing the data well, and treating AI as core to the experience, not an afterthought. &rdquo;
           </blockquote>
         </div>
 

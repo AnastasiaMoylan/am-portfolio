@@ -4,12 +4,12 @@ const capabilities = [
   {
     icon: "◈",
     title: "I own the full problem, not just the screens",
-    body: "Roles, permissions, loading states, empty states, failure paths, recovery flows, approval logic — I map all of it before a pixel gets placed. Teams that have worked with me spend less time discovering edge cases in QA and more time shipping work that holds up.",
+    body: "Roles, permissions, states, failure paths, recovery flows — mapped before a pixel gets placed. Teams I work with spend less time discovering edge cases in QA and more time shipping work that holds up.",
   },
   {
     icon: "⬡",
     title: "I design AI products people can actually trust",
-    body: "Generated output needs evidence. Latency needs a designed state. Consequential actions need review before they execute and a rollback path after. I've built these patterns into production AI products across finance, telecom, and document intelligence.",
+    body: "Generated output needs evidence. Latency needs a designed state. Consequential actions need review before they execute and a rollback after. I've shipped these patterns in production AI products across finance, telecom, and document intelligence.",
   },
   {
     icon: "◻",
