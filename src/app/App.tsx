@@ -6,7 +6,7 @@ ReactGA.initialize("G-BMTYE03CNZ");
 
 export default function App() {
   return (
-    <BrowserRouter basename="/am-portfolio/">
+    <BrowserRouter basename="/">
       <AppRouter />
     </BrowserRouter>
   );

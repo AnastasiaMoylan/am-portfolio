@@ -17,7 +17,7 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  base: '/am-portfolio/',
+  base: '/',
   build: {
     sourcemap: false,
   },
