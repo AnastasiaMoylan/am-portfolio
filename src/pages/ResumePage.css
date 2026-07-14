@@ -1,0 +1,91 @@
+.resume-page {
+  padding: 4rem 0 6rem;
+}
+
+.resume-page-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-page-actions-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-right: auto;
+}
+
+.resume-print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-family);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent);
+  color: #fff;
+  border: 2px solid var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  min-height: 44px;
+}
+
+.resume-print-btn:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+  text-decoration: none;
+}
+
+.resume-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--text);
+  border: 2px solid var(--border);
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  min-height: 44px;
+}
+
+.resume-download-link:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ── Print overrides for the page wrapper ── */
+@media print {
+  .resume-page-actions {
+    display: none;
+  }
+
+  .resume-page {
+    padding: 0;
+  }
+
+  body {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+
+  .header,
+  .footer {
+    display: none;
+  }
+
+  @page {
+    margin: 1.5cm 2cm;
+  }
+}

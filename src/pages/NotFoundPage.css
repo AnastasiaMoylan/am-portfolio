@@ -1,0 +1,35 @@
+.not-found-page {
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.not-found-code {
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--surface-raised);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.not-found-heading {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.not-found-body {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.not-found-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
