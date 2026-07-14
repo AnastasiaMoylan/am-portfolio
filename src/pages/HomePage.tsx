@@ -19,8 +19,8 @@ export default function HomePage() {
         <div className="content-container">
           <SectionHeading
             eyebrow="Selected work"
-            title="Four problems worth reading about"
-            subtitle="Each one involved real organizational complexity, ambiguous requirements, and meaningful stakes. The designs had to survive implementation, not just reviews."
+            title="Four end-to-end solutions worth reading about"
+            subtitle="Each one was an opportunity to design a connected, end-to-end solution — turning disconnected steps, unclear ownership, and untracked handoffs into a journey people could follow with confidence."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             {featuredProjects.map((project) => (

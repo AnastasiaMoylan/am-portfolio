@@ -14,12 +14,22 @@ export default function WorkCard({ project }: WorkCardProps) {
         className="absolute inset-0 z-10"
         aria-label={`Read case study: ${project.title}`}
       />
-      <div
-        className="bg-secondary border-b border-border aspect-video flex items-center justify-center text-muted-foreground text-[0.8125rem] text-center p-6"
-        role="img"
-        aria-label={`Case study visual — placeholder for: ${project.title}`}
-      >
-        Case study visual — placeholder
+      <div className="border-b border-border aspect-video overflow-hidden">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={`Visual for: ${project.title}`}
+            className="w-full h-full object-cover object-center"
+          />
+        ) : (
+          <div
+            className="w-full h-full bg-secondary flex items-center justify-center text-muted-foreground text-[0.8125rem] text-center p-6"
+            role="img"
+            aria-label={`Visuals coming soon for: ${project.title}`}
+          >
+            Visuals coming soon
+          </div>
+        )}
       </div>
       <div className="p-7 flex flex-col gap-3 flex-1">
         <div className="flex items-center gap-2 flex-wrap">

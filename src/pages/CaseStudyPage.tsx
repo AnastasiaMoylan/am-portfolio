@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from "react-router";
 import { projects } from "../data/projects";
 import Button from "../components/ui/Button";
+import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
 
 const caseStudyContent: Record<
   string,
@@ -86,7 +87,8 @@ export default function CaseStudyPage() {
             &larr; All case studies
           </Link>
           <h1 className="text-[clamp(1.75rem,4vw,3rem)] font-bold text-foreground mb-6">{project.title}</h1>
-          <p className="text-muted-foreground">Full case study coming soon.</p>
+          <p className="text-[1.0625rem] text-muted-foreground mb-2">Full case study and visuals coming soon.</p>
+          <p className="text-[0.9375rem] text-muted-foreground">Detailed write-up available on request — <Link to="/contact" className="text-accent hover:text-foreground no-underline transition-colors duration-150">get in touch</Link>.</p>
         </div>
       </div>
     );
@@ -128,10 +130,18 @@ export default function CaseStudyPage() {
             {
               heading: "Execution",
               content: (
-                <div className="bg-card border border-border rounded-md p-8 text-center text-muted-foreground text-sm">
-                  Diagram/screenshot — placeholder
-                  <p className="mt-2 italic text-[0.8125rem]">This would show the end-to-end workspace flow connecting Workflow Builder, Sandbox, and Production environments.</p>
-                </div>
+                <figure className="flex flex-col gap-3">
+                  <div className="rounded-md border border-border overflow-hidden bg-card">
+                    <img
+                      src={financeAIFlow}
+                      alt="End-to-end flow diagram for the Finance AI Transformation — showing Governance, Risk and Compliance governing Agentic Workflows, Data Products, Command Center, and the full pipeline through User Experiences, Feedback and Iteration, Problem Framing, Data Discovery and Ingestion, and Finance Sandbox."
+                      className="w-full h-auto block"
+                    />
+                  </div>
+                  <figcaption className="text-[0.8125rem] text-muted-foreground italic">
+                    End-to-end flow: governance and compliance layer governing agentic workflows, shared data products, and the full pipeline from user experience through finance sandbox exploration.
+                  </figcaption>
+                </figure>
               ),
             },
             {

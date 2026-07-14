@@ -8,11 +8,15 @@ export interface Project {
   outcome: string;
   featuredOrder: number;
   filterCategories: string[];
+  image?: string;
 }
+
+import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
 
 export const projects: Project[] = [
   {
     slug: "governed-ai-finance-workspace",
+    image: financeAIFlow,
     title: "Designing a Governed AI Workspace for Enterprise Finance",
     problem:
       "Finance teams needed AI-assisted analysis without losing the audit trails, governance controls, and human accountability that financial operations require. The risk: ship AI features that feel powerful but bypass controls — and the platform becomes a liability.",
@@ -21,7 +25,7 @@ export const projects: Project[] = [
     tags: ["AI Interaction Design", "Complex Workflows", "Governance"],
     outcome:
       "Defined a product model that separated experimentation from production, made AI activity inspectable at every step, and gave finance leaders the evidence they needed to trust — and approve — AI-assisted work.",
-    featuredOrder: 1,
+    featuredOrder: 3,
     filterCategories: ["AI and Trust", "Complex Workflows", "Data and Finance"],
   },
   {
@@ -35,7 +39,7 @@ export const projects: Project[] = [
     outcome:
       "Delivered a first MVP that gave every role a shared view of progress, defined a status model that made ownership and handoffs explicit, and laid a phased roadmap for document integration and full automation.",
     featuredOrder: 2,
-    filterCategories: ["Complex Workflows", "B2B SaaS"],
+    filterCategories: ["Complex Workflows", "B2B SaaS", "Customer Experience"],
   },
   {
     slug: "enterprise-document-knowledge",
@@ -47,7 +51,7 @@ export const projects: Project[] = [
     tags: ["Document Intelligence", "AI Trust", "Research"],
     outcome:
       "Research showed users preferred side-by-side comparison over tabs — changed the navigation model based on that evidence. Sourced chat, inline citations, and an embedded PDF viewer kept every answer traceable back to its source.",
-    featuredOrder: 3,
+    featuredOrder: 4,
     filterCategories: ["AI and Trust", "B2B SaaS", "Research"],
   },
   {
@@ -60,7 +64,7 @@ export const projects: Project[] = [
     tags: ["Predictive Analytics", "Customer Experience", "AI Decision Support"],
     outcome:
       "Designed an end-to-end mitigation flow that turned a model score into a reviewed, edited, and launched action — with monitoring built in. Human review of AI-assisted messaging was required before anything reached a customer.",
-    featuredOrder: 4,
+    featuredOrder: 1,
     filterCategories: ["AI and Trust", "Customer Experience", "Data and Finance"],
   },
 ];

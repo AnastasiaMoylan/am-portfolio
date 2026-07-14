@@ -6,31 +6,31 @@ const steps = [
     label: "Context",
     number: "01",
     blurb:
-      "Before any wireframe, I map who the users are, what system they're operating in, what constraints engineering and product are working under, and what a successful outcome actually looks like. This is where most design failures start — when someone skips this phase because there's pressure to show something fast.",
+      "Map the full journey — the people, roles, systems, and handoff points across the flow. Before any wireframe, I establish who acts at each step, what they're working from, and where ownership changes hands. Most journey failures start here, when someone skips this phase because there's pressure to show something fast.",
   },
   {
     label: "Evidence",
     number: "02",
     blurb:
-      "I gather what's already known — existing research, analytics, stakeholder interviews, working-POC evaluations — and identify the specific gaps worth closing before committing to a direction. Evidence changes the brief. That's the point. If the research can't change the plan, it isn't research.",
+      "Ground the design in real usage — research and signals gathered from every step of the journey. I identify what's already known, where the gaps are, and what needs to be tested before committing to a direction. Evidence changes the brief. That's the point.",
   },
   {
     label: "Decisions",
     number: "03",
     blurb:
-      "Design is a sequence of explicit tradeoffs: which mental model to follow, which edge cases to handle in the first release, where MVP ends and future scope begins. I document the rationale — not just the outcome — so those decisions survive handoff and can be revisited when the context changes.",
+      "Turn evidence into a clear journey model — who does what, when, and how each handoff works. I document the rationale behind every structural decision so it survives handoff and can be revisited when context changes. A journey that isn't written down isn't a journey — it's an assumption.",
   },
   {
     label: "Execution",
     number: "04",
     blurb:
-      "Flows, states, component specs, acceptance criteria, and code-aware prototypes — built to reduce ambiguity between design and engineering, not just to look finished in a review. I stay close to implementation to catch regressions early and protect the interaction quality before it reaches users.",
+      "Build the end-to-end flow — from first interaction to final action — alongside engineering. Flows, states, component specs, and acceptance criteria built to reduce ambiguity. I stay close to implementation to catch regressions early and protect the journey quality before it reaches users.",
   },
   {
     label: "Outcomes",
     number: "05",
     blurb:
-      "I track what actually changed: usability findings, adoption signals, stakeholder decisions driven by the work, problems that didn't make it to support. Outcomes close the loop on whether the solution solved the right problem — and they inform every engagement that comes next.",
+      "Measure the journey in action — adoption, time saved, trust earned — and refine from there. I track what actually changed: usability findings, completion rates, stakeholder decisions driven by the work. Outcomes close the loop on whether the journey solved the right problem.",
   },
 ];
 
@@ -42,8 +42,8 @@ export default function ProcessPreview() {
       <div className="content-container">
         <SectionHeading
           eyebrow="How I work"
-          title="A repeatable design process"
-          subtitle="The same five phases on every engagement — because good design outcomes aren't accidental. Select any phase to see what it looks like in practice."
+          title="Building the journey end-to-end"
+          subtitle="The same five phases on every engagement — because connected, trustworthy journeys don't happen by accident. Select any phase to see what it looks like in practice."
         />
 
         <div className="flex flex-col md:flex-row gap-3 mt-12">
