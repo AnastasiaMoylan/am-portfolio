@@ -3,7 +3,7 @@ import AppRouter from "./router";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/am-portfolio/">
       <AppRouter />
     </BrowserRouter>
   );
