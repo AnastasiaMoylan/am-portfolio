@@ -119,7 +119,7 @@ export default function ResumeContent() {
             {
               title: "Custom Work Orders | Design Lead and UX / Product Strategy Lead, 2024–2025",
               bullets: [
-                "Led an AT&T client engagement that replaced fragmented billing-package assembly with a guided B2B workflow spanning project selection, evidence retrieval, screenshot generation, document merging, review, approval, and completion.",
+                "Led a telecommunications client engagement that replaced fragmented billing-package assembly with a guided B2B workflow spanning project selection, evidence retrieval, screenshot generation, document merging, review, approval, and completion.",
                 "Mapped the complete operational flow across admins, accountants, engineers, owners, and reviewers, including missing evidence, failed automation, loading, validation, interim spreadsheet editing, handoffs, and recovery without loss of progress.",
                 "Defined a reusable status model (Initiated, In Progress, Review, Approved, Finalized, Completed) with permissions, ownership, notifications, activity history, UAT sign-off, and audit-trail concepts.",
                 "Partnered with engineering and UI development during implementation and moved unsupported dashboard functionality into a visible future backlog instead of compromising the active release.",
@@ -136,7 +136,7 @@ export default function ResumeContent() {
               ],
             },
             {
-              title: "Globe Connected Customer Journey | Senior UX Designer, completed by April 2025",
+              title: "Connected Customer Journey (Telecommunications) | Senior UX Designer, completed by April 2025",
               bullets: [
                 "Designed a complex, data-driven customer journey platform connecting dynamic segmentation, predictive churn signals, sentiment and NPS health, journey drop-offs, AI-assisted messaging, offer customization, and performance monitoring.",
                 "Converted model output into decision support by pairing predictions with customer context, lifecycle stage, behavior, sentiment, and available actions instead of presenting an opaque score as a final answer.",
@@ -158,9 +158,9 @@ export default function ResumeContent() {
           <p className="resume-job-title text-[0.9375rem] font-semibold text-muted-foreground mb-1">Senior Product Designer | December 2019&ndash;July 2021 | Dallas&ndash;Fort Worth, Texas</p>
           <div className="mt-3">
             <Bullets items={[
-              "Contributed senior product-design expertise within a large-scale aviation and digital-product environment, balancing customer needs, business priorities, operational requirements, and technical constraints.",
-              "Applied product strategy, user advocacy, interaction design, prototyping, critique, and cross-functional collaboration to airline product work.",
-              "Partnered across disciplines to translate requirements and complex workflows into usable digital experiences and clearer product direction.",
+              "Redesigned the travel checkout experience, modernizing outdated flows and establishing an incremental approach to evolving the design system and UI over time.",
+              "Led the design team's migration to new design software, partnering closely with the team to support the transition.",
+              "Redesigned the homepage with a new look and feel, balancing a visual refresh against maintaining conversion.",
             ]} />
           </div>
         </div>
@@ -171,10 +171,9 @@ export default function ResumeContent() {
           <p className="resume-job-title text-[0.9375rem] font-semibold text-muted-foreground mb-1">Lead UI/UX Designer | June 2015&ndash;December 2019 | Greater Chicago Area</p>
           <div className="mt-3">
             <Bullets items={[
-              "Led UX and UI design in the home-security and technology domain, with an emphasis on data-driven design and conversion-rate optimization.",
-              "Translated customer, business, and technical needs into understandable digital-product experiences using systems thinking, interaction design, and user-centered solution design.",
-              "Collaborated across product, engineering, marketing, and business functions to improve usability and support measurable product and conversion goals.",
-              "Brought strategic communication, audience understanding, and evidence-based design rationale to stakeholder reviews and product decisions.",
+              "Built and owned the design system from scratch, delivering customer-facing mobile products alongside internal dealer and operations tooling across a full redesign cycle.",
+              "Led data-driven design and conversion-rate optimization, including a new lead-generation testing framework and iterative A/B testing on SEM landing pages and flows.",
+              "Managed the designer internship program from hiring through development, and led a content-strategy rollout with copywriters, developers, and executive leadership.",
             ]} />
           </div>
         </div>

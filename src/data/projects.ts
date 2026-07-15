@@ -12,6 +12,8 @@ export interface Project {
 }
 
 import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
+import ccjDashboard from "../assets/case-studies/ccj/dashboard-performance.jpg";
+import cwoMvp1Workflow from "../assets/case-studies/cwo/mvp1-workflow.jpg";
 
 export const projects: Project[] = [
   {
@@ -30,9 +32,10 @@ export const projects: Project[] = [
   },
   {
     slug: "auditable-billing-workflow",
+    image: cwoMvp1Workflow,
     title: "Replacing Manual Billing-Package Assembly With an Auditable Workflow",
     problem:
-      "AT&T's billing-package process was fragmented across tools, owned by no single role, and had no recovery path when automation failed. Work disappeared mid-process and nobody could tell where.",
+      "A telecommunications client's billing-package process was fragmented across tools, owned by no single role, and had no recovery path when automation failed. Work disappeared mid-process and nobody could tell where.",
     role: "Design Lead and UX / Product Strategy Lead",
     status: "Completed",
     tags: ["End-to-end Flow", "B2B SaaS", "Workflow Automation"],
@@ -56,9 +59,10 @@ export const projects: Project[] = [
   },
   {
     slug: "connected-customer-journey",
+    image: ccjDashboard,
     title: "Reducing Churn With a Connected Customer Journey Platform",
     problem:
-      "Globe had predictive churn signals but no way to act on them. The gap between a model score and a human taking the right action for the right customer was entirely undesigned.",
+      "A telecommunications client had predictive churn signals but no way to act on them. The gap between a model score and a human taking the right action for the right customer was entirely undesigned.",
     role: "Senior UX Designer",
     status: "Completed April 2025",
     tags: ["Predictive Analytics", "Customer Experience", "AI Decision Support"],

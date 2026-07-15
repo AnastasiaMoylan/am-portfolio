@@ -9,7 +9,7 @@ const timeline = [
       { title: "Senior Experience Designer", dates: "July 2021–July 2025" },
     ],
     context:
-      "Led design on AI-assisted finance and billing products, enterprise document intelligence, and complex telecommunications CX platforms. Managed designer mentorship, drove product strategy alignment, and owned end-to-end experience across multi-phase engagements.",
+      "Led UX across two to three concurrent enterprise engagements at a time, directing and reviewing work for two to three direct reports per engagement. Drove integration of AI capabilities, including predictive analytics, LLM-based automation, and embedded generative features, into production-ready, enterprise-scale systems for finance, billing, and telecommunications CX platforms, and established shared design frameworks and best practices across projects.",
   },
   {
     company: "American Airlines",
@@ -17,7 +17,7 @@ const timeline = [
       { title: "Senior Product Designer", dates: "December 2019–July 2021" },
     ],
     context:
-      "Designed internal operations tooling and crew-facing workflows used across the carrier network. Worked inside a complex org at enterprise scale, coordinating design decisions with operations, IT, and frontline feedback loops.",
+      "Redesigned the travel checkout experience, modernizing outdated flows and establishing an incremental approach to evolving the design system and UI over time. Led the design team's migration to new design software and redesigned the homepage, balancing a visual refresh against maintaining conversion.",
   },
   {
     company: "Brinks Home Security",
@@ -25,7 +25,7 @@ const timeline = [
       { title: "Lead UI/UX Designer", dates: "June 2015–December 2019" },
     ],
     context:
-      "Built and owned the design system from scratch. Delivered customer-facing mobile and web products alongside internal dealer and operations tooling across a full redesign cycle.",
+      "Built and owned the design system from scratch, delivering customer-facing mobile products alongside internal dealer and operations tooling across a full redesign cycle. Led data-driven design and conversion-rate optimization, including a new lead-generation testing framework and iterative A/B testing on SEM landing pages, and managed the designer internship program from hiring through development.",
   },
 ];
 
@@ -59,6 +59,7 @@ export default function AboutPage() {
     <div className="py-16 pb-24">
       <div className="content-container">
         <SectionHeading
+          level={1}
           eyebrow="About"
           title="Anastasia Novelly Moylan"
           subtitle="Lead Experience Designer · 10+ years in enterprise product and AI design"

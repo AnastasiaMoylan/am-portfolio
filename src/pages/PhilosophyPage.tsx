@@ -36,6 +36,7 @@ export default function PhilosophyPage() {
     <div className="py-16 pb-24">
       <div className="content-container">
         <SectionHeading
+          level={1}
           eyebrow="Design philosophy"
           title="The whole system, not just the screen"
           subtitle="Seven principles I've tested against real engagements: not a manifesto, but a record of what has consistently produced better outcomes."

@@ -14,10 +14,11 @@ export default function WorkPage() {
       : projects.filter((p) => p.filterCategories.includes(activeFilter));
 
   return (
-    <div className="py-16">
+    <div className="py-16 pb-24">
       <div className="content-container">
         <div className="mb-12">
           <SectionHeading
+            level={1}
             eyebrow="Case studies"
             title="Selected product work"
             subtitle="These are the solutions worth explaining, each shaped by organizational complexity, technical constraints, and user needs that all had to be resolved at the same time. Every one shows how I work, not just what I delivered."
@@ -36,7 +37,7 @@ export default function WorkPage() {
           ))}
         </div>
 
-        <aside className="mt-12 p-6 bg-card border border-border rounded-md text-[0.9375rem] text-muted-foreground leading-relaxed">
+        <aside className="mt-12 p-6 bg-card border border-border rounded-md text-[0.9375rem] text-muted-foreground leading-[1.65]">
           Client and engagement details are confidential. The placeholder visuals here represent real interface work. Full designs are available to share during a conversation with a hiring team.
         </aside>
 
