@@ -2,6 +2,20 @@ import { useParams, Link, Navigate } from "react-router";
 import { projects } from "../data/projects";
 import Button from "../components/ui/Button";
 import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
+import ccjUserFlow from "../assets/case-studies/ccj/user-flow.jpg";
+import ccjDashboard from "../assets/case-studies/ccj/dashboard-performance.jpg";
+import ccjMitigationPlan from "../assets/case-studies/ccj/mitigation-plan.jpg";
+import ccjChatExpanded from "../assets/case-studies/ccj/chat-expanded.png";
+import cwoMvp1Workflow from "../assets/case-studies/cwo/mvp1-workflow.jpg";
+import cwoCreationFlow from "../assets/case-studies/cwo/creation-flow.jpg";
+import cwoFlow from "../assets/case-studies/cwo/flow.jpg";
+import cwoStrategyAlignment from "../assets/case-studies/cwo/strategy-alignment.jpg";
+
+interface CaseStudyImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
 
 const caseStudyContent: Record<
   string,
@@ -12,6 +26,8 @@ const caseStudyContent: Record<
     ownership: string[];
     keyDecisions: string[];
     states: string[];
+    images: CaseStudyImage[];
+    outcomeText?: string;
   }
 > = {
   "governed-ai-finance-workspace": {
@@ -45,6 +61,131 @@ const caseStudyContent: Record<
       "Blocked promotion: reason visible, checklist of unmet requirements",
       "Pause/resume/rollback: for consequential multi-step workflows",
     ],
+    images: [
+      {
+        src: financeAIFlow,
+        alt: "End-to-end flow diagram for the Finance AI Transformation, showing Governance, Risk and Compliance governing Agentic Workflows, Data Products, Command Center, and the full pipeline through User Experiences, Feedback and Iteration, Problem Framing, Data Discovery and Ingestion, and Finance Sandbox.",
+        caption:
+          "End-to-end flow: governance and compliance layer governing agentic workflows, shared data products, and the full pipeline from user experience through finance sandbox exploration.",
+      },
+    ],
+  },
+  "connected-customer-journey": {
+    outcomeLabel: "Connected customer journey · Completed, April 2025",
+    snapshotFields: [
+      { label: "Role", value: "Senior UX Designer" },
+      { label: "Employer", value: "Amdocs Studios" },
+      { label: "Client", value: "Confidential telecommunications company" },
+      { label: "Status", value: "Completed April 2025" },
+      { label: "Tools", value: "Figma, FigJam" },
+    ],
+    context:
+      "A telecommunications client had predictive churn signals but no way to act on them. Analysts could see who was at risk of churning, but there was no connected path from that signal to a mitigation action a customer service representative could actually execute. The gap between a model score and a human taking the right action for the right customer was entirely undesigned.",
+    ownership: [
+      "Designed a complex, data-driven customer journey platform connecting dynamic segmentation, predictive churn signals, sentiment and NPS health, journey drop-offs, AI-assisted messaging, offer customization, and performance monitoring.",
+      "Converted model output into decision support by pairing predictions with customer context, lifecycle stage, behavior, sentiment, and available actions instead of presenting an opaque score as a final answer.",
+      "Created an end-to-end mitigation flow from segment and risk detection through context review, human-selected action, message or offer adjustment, launch, monitoring, and iteration.",
+      "Preserved human control by requiring users to review and edit AI-assisted communication before delivery.",
+    ],
+    keyDecisions: [
+      "Built customer segments dynamically from churn-risk criteria (issues, historic behavior, likelihood to churn) rather than static lists, so the model stayed correlated with real journey data instead of a one-time snapshot.",
+      "Treated each offer as a hypothesis first, with a what-if analysis tool that let analysts adjust inputs and watch the model's inference and recommended offer update in response, refined over time by a human-feedback loop.",
+      "Routed customers to an AI chatbot first, transferring to a human customer service representative only when sentiment analysis and account context indicated the interaction needed a person, keeping routine requests fast while protecting the moments that needed empathy.",
+    ],
+    states: [
+      "Angry or high-churn-risk customer: prompts the representative to use generative AI to draft an empathetic, tone-matched message based on the specific triggers detected, not a generic response",
+      "Representative needs to go further than the model recommends: access to additional offers the automated system doesn't yet know about",
+      "Reviewing a case mid-conversation: the customer's personal file, offer history, and a summarized view of prior offer variations stay visible without leaving the chat",
+      "Offer declined or resolution unsuccessful: loops back to offer adjustment rather than ending in a dead end",
+    ],
+    outcomeText:
+      "Designed an end-to-end mitigation flow that turned a model score into a reviewed, edited, and launched action, with monitoring built in. Human review of AI-assisted messaging was required before anything reached a customer.",
+    images: [
+      {
+        src: ccjUserFlow,
+        alt: "User flow diagram for the connected customer journey, showing an analyst path from dashboard alert through offer generation, a customer journey path from risk event through AI chatbot and human customer-service handoff, and a customer-service representative path ending in resolution.",
+        caption:
+          "End-to-end flow: from churn-risk detection and segment creation, through AI chatbot and human customer-service handoff, to offer resolution and monitoring.",
+      },
+      {
+        src: ccjDashboard,
+        alt: "Analyst dashboard showing at-risk KPIs including top-up revenue, data usage, and network experience, alongside ARPU, NPS, retention, and campaign conversion performance.",
+        caption:
+          "Analyst dashboard surfacing at-risk KPIs alongside ARPU, NPS, retention, and campaign performance, with a direct path to mitigate a flagged risk.",
+      },
+      {
+        src: ccjMitigationPlan,
+        alt: "Mitigation plan screen showing an identified KPI risk, its key drivers, and a personalized offer generation builder with audience, tone, and message preview.",
+        caption:
+          "Mitigation plan for an identified KPI risk, pairing the key drivers behind it with an AI-assisted, tone-controlled offer builder and a live preview of the customer-facing message.",
+      },
+      {
+        src: ccjChatExpanded,
+        alt: "Customer service representative interface with an expanded chat panel showing an AI-generated customer summary and suggested course of action alongside the live conversation.",
+        caption:
+          "The representative's chat interface, with an AI-generated customer summary and suggested course of action alongside the live conversation.",
+      },
+    ],
+  },
+  "auditable-billing-workflow": {
+    outcomeLabel: "Auditable billing workflow · Completed, 2024–2025",
+    snapshotFields: [
+      { label: "Role", value: "Design Lead and UX / Product Strategy Lead" },
+      { label: "Employer", value: "Amdocs Studios" },
+      { label: "Client", value: "Confidential telecommunications company" },
+      { label: "Timeframe", value: "2024–2025" },
+      { label: "Status", value: "Completed" },
+      { label: "Tools", value: "Figma, FigJam" },
+    ],
+    context:
+      "A telecommunications client's billing-package process was fragmented across tools, owned by no single role, and had no recovery path when automation failed. Work disappeared mid-process and nobody could tell where it had gone. Assembling a single billing package meant manually pulling project data, screenshots, and invoices from multiple systems with no shared status model or audit trail.",
+    ownership: [
+      "Led a guided B2B workflow replacing fragmented billing-package assembly, spanning project selection, evidence retrieval, screenshot generation, document merging, review, approval, and completion.",
+      "Mapped the complete operational flow across admins, accountants, engineers, owners, and reviewers, including missing evidence, failed automation, loading, validation, interim spreadsheet editing, handoffs, and recovery without loss of progress.",
+      "Defined a reusable status model (Initiated, In Progress, Review, Approved, Finalized, Completed) with permissions, ownership, notifications, activity history, UAT sign-off, and audit-trail concepts.",
+      "Partnered with engineering and UI development during implementation, moving unsupported dashboard functionality into a visible future backlog instead of compromising the active release.",
+      "Delivered a completed first MVP for interface and project querying, plus a phased roadmap for document integration, in-product editing, expanded review, and automation.",
+    ],
+    keyDecisions: [
+      "Modeled role-based access as a first-class flow branch rather than a permissions afterthought: admins, accountants, engineers, and collections could create packages, while a view-only report role and an engineer-specific one-time report view kept read access scoped to what each role actually needed.",
+      "Made billing-package identity explicit (the package's primary key is the project number) so the system could tell the difference between resuming a previously created package and starting a new one, instead of silently duplicating work.",
+      "Built review as its own state machine: a reviewer starts a session, makes inline edits with save or discard, and submits with a git-style commit message, so changes stayed traceable and reversible before a package was finalized.",
+    ],
+    states: [
+      "Invalid or unmatched project number entered: explicit error state before any billing package is created",
+      "Billing package primary key not found: routes to creating a new billing package instead of failing silently",
+      "Automation or feeder-system failure: work in progress is preserved rather than lost, with a clear retry path",
+      "Review in progress: all other users see view-only access until the review is complete, so no one edits a package mid-review",
+      "Discarded inline edit: reverts cleanly without affecting the rest of the package",
+    ],
+    outcomeText:
+      "Delivered a first MVP that gave every role a shared view of progress, defined a status model that made ownership and handoffs explicit, and laid a phased roadmap for document integration and full automation.",
+    images: [
+      {
+        src: cwoMvp1Workflow,
+        alt: "MVP1 user flow diagram showing a user searching a project number, the system matching it to a billing package by primary key, and generating the package with a PDF invoice and screenshots.",
+        caption:
+          "MVP1 flow: searching a project number, matching it to a billing package by primary key, and generating the package with a PDF invoice and screenshots.",
+      },
+      {
+        src: cwoCreationFlow,
+        alt: "Billing package creation flow diagram showing role-based branching for admin, accountant, engineer, collections, and view-only report roles, from sign-in through review, export, and finalization.",
+        caption:
+          "Creation flow: role-based branching from sign-in through review, export, and finalization.",
+      },
+      {
+        src: cwoFlow,
+        alt: "Review flow diagram showing a reviewer starting a review, making inline edits with save or discard options, completing the review, and submitting with a git-style commit message.",
+        caption:
+          "Review flow: starting a review, making inline edits with save or discard, completing the review, and submitting with a git-style commit message before the package is marked ready for review.",
+      },
+      {
+        src: cwoStrategyAlignment,
+        alt: "MVP2 scope-definition workshop board showing goals and outcomes, feature prioritization by must-have, should-have, and nice-to-have, and entity relationships between agreement, billing invoice, project, and vendor invoice.",
+        caption:
+          "MVP2 scope-definition workshop: goals and outcomes, feature prioritization, and the entity relationships used to plan the next phase.",
+      },
+    ],
   },
 };
 
@@ -69,6 +210,21 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
+function ImageGallery({ images }: { images: CaseStudyImage[] }) {
+  return (
+    <div className="flex flex-col gap-8">
+      {images.map((image) => (
+        <figure key={image.src} className="flex flex-col gap-3">
+          <div className="rounded-md border border-border overflow-hidden bg-card">
+            <img src={image.src} alt={image.alt} className="w-full h-auto block" loading="lazy" />
+          </div>
+          <figcaption className="text-[0.8125rem] text-muted-foreground italic">{image.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 export default function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = projects.find((p) => p.slug === slug);
@@ -81,7 +237,7 @@ export default function CaseStudyPage() {
 
   if (!content) {
     return (
-      <div className="py-16">
+      <div className="py-16 pb-24">
         <div className="content-container">
           <Link to="/work" className="inline-flex items-center gap-1.5 text-[0.9375rem] text-muted-foreground hover:text-foreground no-underline mb-10 transition-colors duration-150">
             &larr; All case studies
@@ -127,26 +283,14 @@ export default function CaseStudyPage() {
             { heading: "My ownership", content: <BulletList items={content.ownership} /> },
             { heading: "Key decisions", content: <BulletList items={content.keyDecisions} /> },
             { heading: "States, edge cases, and recovery", content: <BulletList items={content.states} /> },
-            {
-              heading: "Execution",
-              content: (
-                <figure className="flex flex-col gap-3">
-                  <div className="rounded-md border border-border overflow-hidden bg-card">
-                    <img
-                      src={financeAIFlow}
-                      alt="End-to-end flow diagram for the Finance AI Transformation, showing Governance, Risk and Compliance governing Agentic Workflows, Data Products, Command Center, and the full pipeline through User Experiences, Feedback and Iteration, Problem Framing, Data Discovery and Ingestion, and Finance Sandbox."
-                      className="w-full h-auto block"
-                    />
-                  </div>
-                  <figcaption className="text-[0.8125rem] text-muted-foreground italic">
-                    End-to-end flow: governance and compliance layer governing agentic workflows, shared data products, and the full pipeline from user experience through finance sandbox exploration.
-                  </figcaption>
-                </figure>
-              ),
-            },
+            { heading: "Execution", content: <ImageGallery images={content.images} /> },
             {
               heading: "Outcome and impact",
-              content: <p className="text-base text-muted-foreground leading-[1.7]"><TodoTag>[TODO: add measured outcomes: POC reception, research findings, roadmap decisions driven by this work]</TodoTag></p>,
+              content: content.outcomeText ? (
+                <p className="text-base text-muted-foreground leading-[1.7] max-w-[46rem]">{content.outcomeText}</p>
+              ) : (
+                <p className="text-base text-muted-foreground leading-[1.7]"><TodoTag>[TODO: add measured outcomes: reception, research findings, roadmap decisions driven by this work]</TodoTag></p>
+              ),
             },
             {
               heading: "What I learned",

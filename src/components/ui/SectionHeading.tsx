@@ -2,7 +2,7 @@ interface SectionHeadingProps {
   eyebrow?: string;
   title: string;
   subtitle?: string;
-  level?: 2 | 3;
+  level?: 1 | 2 | 3;
 }
 
 export default function SectionHeading({
@@ -11,7 +11,7 @@ export default function SectionHeading({
   subtitle,
   level = 2,
 }: SectionHeadingProps) {
-  const HeadingTag = `h${level}` as "h2" | "h3";
+  const HeadingTag = `h${level}` as "h1" | "h2" | "h3";
 
   return (
     <div className="flex flex-col gap-3">
@@ -24,7 +24,7 @@ export default function SectionHeading({
         {title}
       </HeadingTag>
       {subtitle && (
-        <p className="text-[1.0625rem] text-muted-foreground leading-relaxed max-w-[46rem]">
+        <p className="text-[1.0625rem] text-muted-foreground leading-[1.7] max-w-[46rem]">
           {subtitle}
         </p>
       )}

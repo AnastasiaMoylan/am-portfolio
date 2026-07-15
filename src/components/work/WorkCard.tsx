@@ -37,7 +37,7 @@ export default function WorkCard({ project }: WorkCardProps) {
           <span className="text-[0.8125rem] text-muted-foreground">{project.role}</span>
         </div>
         <h3 className="text-lg font-semibold leading-[1.3] text-foreground">{project.title}</h3>
-        <p className="text-[0.9375rem] text-muted-foreground leading-relaxed">{project.problem}</p>
+        <p className="text-[0.9375rem] text-muted-foreground leading-[1.65]">{project.problem}</p>
         <p className="text-sm text-muted-foreground italic pt-2 border-t border-border mt-auto">
           {project.outcome}
         </p>

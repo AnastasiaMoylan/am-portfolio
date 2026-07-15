@@ -2,7 +2,7 @@ import { Mail, Linkedin } from "lucide-react";
 
 export default function ContactPage() {
   return (
-    <div className="py-20 pb-32">
+    <div className="py-16 pb-24">
       <div className="content-container max-w-[36rem]">
         <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent mb-4">Contact</p>
         <h1 className="text-[clamp(2rem,5vw,3.25rem)] font-bold text-foreground leading-[1.1] mb-4">

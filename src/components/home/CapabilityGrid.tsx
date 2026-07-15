@@ -46,7 +46,7 @@ export default function CapabilityGrid() {
               <h3 className="text-lg font-semibold text-foreground mb-4">{title}</h3>
               <ul className="list-none p-0 m-0 flex flex-col gap-2">
                 {bullets.map((b) => (
-                  <li key={b} className="flex gap-2.5 text-[0.9375rem] text-muted-foreground leading-[1.55]">
+                  <li key={b} className="flex gap-2.5 text-[0.9375rem] text-muted-foreground leading-[1.65]">
                     <span className="text-accent mt-[3px] shrink-0">→</span>
                     {b}
                   </li>
