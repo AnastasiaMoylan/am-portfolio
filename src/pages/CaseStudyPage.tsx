@@ -48,10 +48,8 @@ const caseStudyContent: Record<
     },
     snapshotFields: [
       { label: "Role", value: "Lead UX / Product Designer" },
-      { label: "Employer", value: "Amdocs Studios" },
       { label: "Client", value: "Confidential enterprise telecommunications organization" },
       { label: "Timeframe", value: "2025–2026" },
-      { label: "Status", value: "Completed" },
       { label: "Tools", value: "Figma, React, Tailwind CSS, Vite" },
     ],
     context:
@@ -95,9 +93,7 @@ const caseStudyContent: Record<
     },
     snapshotFields: [
       { label: "Role", value: "Senior UX Designer" },
-      { label: "Employer", value: "Amdocs Studios" },
       { label: "Client", value: "Confidential telecommunications company" },
-      { label: "Status", value: "Completed April 2025" },
       { label: "Tools", value: "Figma, FigJam" },
     ],
     context:
@@ -159,10 +155,8 @@ const caseStudyContent: Record<
     },
     snapshotFields: [
       { label: "Role", value: "Design Lead and UX / Product Strategy Lead" },
-      { label: "Employer", value: "Amdocs Studios" },
       { label: "Client", value: "Confidential telecommunications company" },
       { label: "Timeframe", value: "2024–2025" },
-      { label: "Status", value: "Completed" },
       { label: "Tools", value: "Figma, FigJam" },
     ],
     context:
@@ -241,7 +235,6 @@ function BulletList({ items }: { items: string[] }) {
 function TldrBox({ tldr }: { tldr: Tldr }) {
   return (
     <div className="bg-secondary border border-border rounded-md p-6 mb-12" aria-label="Case study summary">
-      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-accent mb-4">TL;DR</p>
       <dl className="flex flex-col gap-4 m-0">
         <div>
           <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The challenge</dt>
