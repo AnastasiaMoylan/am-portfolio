@@ -5,7 +5,7 @@ interface BadgeProps {
 
 const variants = {
   default: "bg-secondary text-foreground border-border",
-  accent: "bg-primary/15 text-accent border-primary/30",
+  accent: "bg-primary text-primary-foreground border-primary",
   status: "bg-secondary text-foreground border-border",
 };
 
