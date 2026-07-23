@@ -34,6 +34,7 @@ export default function WorkCard({ project }: WorkCardProps) {
       <div className="p-6 flex flex-col gap-2.5 flex-1">
         <span className="text-[0.8125rem] text-muted-foreground">{project.role}</span>
         <h3 className="text-lg font-semibold leading-[1.3] text-foreground">{project.title}</h3>
+        <p className="text-[0.9375rem] font-medium text-accent leading-[1.5]">{project.tagline}</p>
         <p className="text-[0.9375rem] text-muted-foreground leading-[1.6] line-clamp-3">{project.problem}</p>
         <ul className="list-none p-0 m-0 flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (

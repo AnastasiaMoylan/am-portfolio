@@ -5,10 +5,10 @@ export default function Footer() {
         <ul className="list-none p-0 m-0 flex flex-wrap gap-6">
           <li>
             <a
-              href="mailto:anastasiamoylan@gmail.com"
+              href="mailto:anastasiamoylan.design@gmail.com"
               className="text-[0.9375rem] text-muted-foreground hover:text-foreground no-underline transition-colors duration-150"
             >
-              anastasiamoylan@gmail.com
+              anastasiamoylan.design@gmail.com
             </a>
           </li>
           <li>

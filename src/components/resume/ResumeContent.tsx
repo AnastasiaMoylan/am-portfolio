@@ -38,7 +38,7 @@ export default function ResumeContent() {
           Anastasia Novelly Moylan
         </h1>
         <p className="resume-tagline text-[1.0625rem] font-medium text-accent mb-5">
-          Lead Product Designer | Complex B2B SaaS, AI Workflows &amp; Design Systems
+          Lead Experience Designer | Developer Platforms, Enterprise Systems &amp; Partner Experiences
         </p>
         <ul className="resume-contact list-none p-0 m-0 flex flex-wrap gap-x-5 gap-y-1 mb-3">
           <li>
@@ -47,8 +47,8 @@ export default function ResumeContent() {
             </a>
           </li>
           <li>
-            <a href="mailto:anastasiamoylan@gmail.com" className="resume-contact-link text-[0.9375rem] text-accent hover:text-foreground no-underline transition-colors duration-150">
-              anastasiamoylan@gmail.com
+            <a href="mailto:anastasiamoylan.design@gmail.com" className="resume-contact-link text-[0.9375rem] text-accent hover:text-foreground no-underline transition-colors duration-150">
+              anastasiamoylan.design@gmail.com
             </a>
           </li>
           <li>
@@ -71,7 +71,7 @@ export default function ResumeContent() {
       <Section id="resume-summary-heading" heading="Summary">
         <div className="flex flex-col gap-3">
           <p className="text-[0.9375rem] text-muted-foreground leading-[1.75]">
-            Lead Experience Designer and product design leader with 10+ years of experience turning complex, data-intensive systems into clear, trustworthy product experiences. Owns work from solution framing and product strategy through end-to-end flows, research, prototyping, design-system decisions, implementation support, and design QA. Experienced across enterprise B2B software, telecommunications, finance, aviation, home security, AI-assisted knowledge tools, workflow automation, and predictive customer experiences.
+            Lead Experience Designer and product design leader with 10+ years of experience turning complex, data-intensive systems, developer-facing tooling, and partner integrations into clear, trustworthy product experiences. Owns work from solution framing and product strategy through end-to-end flows, research, prototyping, design-system decisions, implementation support, and design QA. Experienced across enterprise B2B software, telecommunications, finance, aviation, home security, AI-assisted knowledge tools, workflow automation, and predictive customer experiences.
           </p>
           <p className="text-[0.9375rem] text-muted-foreground leading-[1.75]">
             Designs systems rather than isolated screens, defining roles, permissions, states, edge cases, failure conditions, handoffs, and recovery paths before they surface during implementation. Partners closely with product managers, engineers, data teams, architects, finance stakeholders, and client leaders to make tradeoffs explicit and preserve the user experience through delivery. Uses Figma, React, Tailwind CSS, Vite, and AI-assisted development tools to build interaction prototypes, test system behavior, and reduce ambiguity between design and engineering.
@@ -87,7 +87,7 @@ export default function ResumeContent() {
         {/* Amdocs */}
         <div className="mb-10">
           <h3 className="resume-job-company text-[1.0625rem] font-bold text-foreground mb-1">
-            Amdocs Studios
+            Amdocs Studios (formerly Stellar Elements)
           </h3>
           <p className="resume-job-title text-[0.9375rem] font-semibold text-muted-foreground">Lead Experience Designer | 2025&ndash;Present</p>
           <p className="resume-job-title text-[0.9375rem] font-semibold text-muted-foreground">Senior Experience Designer | July 2021&ndash;July 2025</p>
@@ -183,7 +183,7 @@ export default function ResumeContent() {
       <Section id="resume-skills-heading" heading="Skills">
         <div className="flex flex-col gap-5">
           {[
-            { label: "Product design and ownership", body: "End-to-end product-area ownership, product/UX strategy, complex B2B SaaS and enterprise platforms, systems thinking and information architecture, end-to-end flows/state models/edge cases/recovery paths, interaction design, workflow automation, requirements/PRDs/acceptance criteria, roadmaps/backlogs/prioritization, design QA and accessibility review." },
+            { label: "Product design and ownership", body: "End-to-end product-area ownership, product/UX strategy, complex B2B SaaS and enterprise platforms, developer-facing tooling, API and workflow design, service design, systems thinking and information architecture, end-to-end flows/state models/edge cases/recovery paths, interaction design, workflow automation, requirements/PRDs/acceptance criteria, roadmaps/backlogs/prioritization, design QA and accessibility review." },
             { label: "AI interaction design", body: "AI-assisted workflows and LLM interaction design, uncertainty/latency/partial results/reversibility, human-in-the-loop review, evidence/citations/explainability, generated-plan and generated-code inspection, agent activity/logs/lineage/versioning/auditability, predictive analytics and decision-support interfaces, experimentation and promotion gates." },
             { label: "Flow literacy and complex systems", body: "Role and permission modeling, loading/empty/error/blocked/success states, progressive validation and preserved-progress patterns, approval/exception/escalation/retry/rollback paths, audit trails and compliance-aware workflows." },
             { label: "Design systems and implementation", body: "Figma variables, components, and libraries; design-system adoption and extension; Flywheel React/Tailwind UI and DCU; React and Tailwind CSS prototyping; Vite, Heroicons, Windsurf, Figma Make; engineering pairing, UI feasibility review, regression identification." },

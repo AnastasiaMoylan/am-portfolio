@@ -7,7 +7,9 @@ import Button from "../components/ui/Button";
 import WorkCard from "../components/work/WorkCard";
 import { projects } from "../data/projects";
 
-const featuredProjects = [...projects].sort((a, b) => a.featuredOrder - b.featuredOrder);
+const featuredProjects = projects
+  .filter((p) => !p.hiddenOnHome)
+  .sort((a, b) => a.featuredOrder - b.featuredOrder);
 
 export default function HomePage() {
   return (
@@ -19,7 +21,7 @@ export default function HomePage() {
         <div className="content-container">
           <SectionHeading
             eyebrow="Selected work"
-            title="Four end-to-end solutions worth reading about"
+            title="End-to-end solutions worth reading about"
             subtitle="Each one was an opportunity to design a connected, end-to-end solution: turning disconnected steps, unclear ownership, and untracked handoffs into a journey people could follow with confidence."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">

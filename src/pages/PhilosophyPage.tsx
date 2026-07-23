@@ -1,5 +1,15 @@
 import SectionHeading from "../components/ui/SectionHeading";
 
+const skills = [
+  "End-to-end journey mapping",
+  "AI interaction and trust design",
+  "Workflow and systems design",
+  "Design systems",
+  "Research and usability testing",
+  "Workshop facilitation",
+  "Prototyping in code",
+];
+
 const principles = [
  {
     title: "Design flows, not screens",
@@ -46,6 +56,15 @@ export default function PhilosophyPage() {
           <blockquote className="text-[clamp(1.25rem,3vw,1.625rem)] font-medium text-foreground leading-[1.5] italic pl-6 border-l-[3px] border-primary">
             &ldquo; Good product design is what makes a system understandable: getting the flows right, designing the data well, and treating AI as core to the experience, not an afterthought. &rdquo;
           </blockquote>
+
+          <div className="mt-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent mb-3">
+              How I use AI in my own work
+            </p>
+            <p className="text-base text-muted-foreground leading-[1.75]">
+              I use AI as an accelerator, it doesn&apos;t do the thinking for me but rather it is a worker who takes the strategy I come up with and helps to execute in the correct points. Human led is my approach with AI in my work.
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-12 max-w-[52rem] mt-12">
@@ -58,6 +77,22 @@ export default function PhilosophyPage() {
               <p className="text-base text-muted-foreground leading-[1.75]">{body}</p>
             </div>
           ))}
+        </div>
+
+        <div className="max-w-[52rem] mt-14 pt-12 border-t border-border">
+          <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent mb-5">
+            Skills, in practice
+          </p>
+          <ul className="list-none p-0 m-0 flex flex-wrap gap-2">
+            {skills.map((skill) => (
+              <li
+                key={skill}
+                className="text-sm text-muted-foreground bg-card border border-border rounded-sm px-3 py-1.5"
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
