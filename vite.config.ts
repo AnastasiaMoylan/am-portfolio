@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import { imagetools } from 'vite-imagetools'
 
 
 function figmaAssetResolver() {
@@ -23,6 +24,17 @@ export default defineConfig({
   },
   plugins: [
     figmaAssetResolver(),
+    // `?preview` on an image import yields a downscaled WebP for inline
+    // gallery display; the untouched original stays available for the
+    // full-resolution lightbox view.
+    imagetools({
+      defaultDirectives: (url) => {
+        if (url.searchParams.has('preview')) {
+          return new URLSearchParams({ w: '1600', format: 'webp', quality: '80', withoutEnlargement: 'true' })
+        }
+        return new URLSearchParams()
+      },
+    }),
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them
     react(),

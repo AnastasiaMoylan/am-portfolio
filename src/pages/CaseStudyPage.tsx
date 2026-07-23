@@ -4,18 +4,30 @@ import { ZoomIn } from "lucide-react";
 import { projects } from "../data/projects";
 import Button from "../components/ui/Button";
 import ImageLightbox from "../components/work/ImageLightbox";
-import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
-import ccjUserFlow from "../assets/case-studies/ccj/user-flow.jpg";
-import ccjDashboard from "../assets/case-studies/ccj/dashboard-performance.jpg";
-import ccjMitigationPlan from "../assets/case-studies/ccj/mitigation-plan.jpg";
-import ccjChatExpanded from "../assets/case-studies/ccj/chat-expanded.png";
-import cwoMvp1Workflow from "../assets/case-studies/cwo/mvp1-workflow.jpg";
-import cwoCreationFlow from "../assets/case-studies/cwo/creation-flow.jpg";
-import cwoFlow from "../assets/case-studies/cwo/flow.jpg";
-import cwoStrategyAlignment from "../assets/case-studies/cwo/strategy-alignment.jpg";
+// `?preview` yields a downscaled WebP for inline display (see vite.config.ts);
+// the plain import is the full-resolution original used by the lightbox.
+import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png?preview";
+import financeAIFlowFull from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
+import ccjUserFlow from "../assets/case-studies/ccj/user-flow.jpg?preview";
+import ccjUserFlowFull from "../assets/case-studies/ccj/user-flow.jpg";
+import ccjDashboard from "../assets/case-studies/ccj/dashboard-performance.jpg?preview";
+import ccjDashboardFull from "../assets/case-studies/ccj/dashboard-performance.jpg";
+import ccjMitigationPlan from "../assets/case-studies/ccj/mitigation-plan.jpg?preview";
+import ccjMitigationPlanFull from "../assets/case-studies/ccj/mitigation-plan.jpg";
+import ccjChatExpanded from "../assets/case-studies/ccj/chat-expanded.png?preview";
+import ccjChatExpandedFull from "../assets/case-studies/ccj/chat-expanded.png";
+import cwoMvp1Workflow from "../assets/case-studies/cwo/mvp1-workflow.jpg?preview";
+import cwoMvp1WorkflowFull from "../assets/case-studies/cwo/mvp1-workflow.jpg";
+import cwoCreationFlow from "../assets/case-studies/cwo/creation-flow.jpg?preview";
+import cwoCreationFlowFull from "../assets/case-studies/cwo/creation-flow.jpg";
+import cwoFlow from "../assets/case-studies/cwo/flow.jpg?preview";
+import cwoFlowFull from "../assets/case-studies/cwo/flow.jpg";
+import cwoStrategyAlignment from "../assets/case-studies/cwo/strategy-alignment.jpg?preview";
+import cwoStrategyAlignmentFull from "../assets/case-studies/cwo/strategy-alignment.jpg";
 
 interface CaseStudyImage {
   src: string;
+  fullSrc: string;
   alt: string;
   caption: string;
 }
@@ -84,6 +96,7 @@ const caseStudyContent: Record<
     images: [
       {
         src: financeAIFlow,
+        fullSrc: financeAIFlowFull,
         alt: "End-to-end flow diagram for the Finance AI Transformation, showing Governance, Risk and Compliance governing Agentic Workflows, Data Products, Command Center, and the full pipeline through User Experiences, Feedback and Iteration, Problem Framing, Data Discovery and Ingestion, and Finance Sandbox.",
         caption:
           "End-to-end flow: governance and compliance layer governing agentic workflows, shared data products, and the full pipeline from user experience through finance sandbox exploration.",
@@ -130,24 +143,28 @@ const caseStudyContent: Record<
     images: [
       {
         src: ccjUserFlow,
+        fullSrc: ccjUserFlowFull,
         alt: "User flow diagram for the connected customer journey, showing an analyst path from dashboard alert through offer generation, a customer journey path from risk event through AI chatbot and human customer-service handoff, and a customer-service representative path ending in resolution.",
         caption:
           "End-to-end flow: from churn-risk detection and segment creation, through AI chatbot and human customer-service handoff, to offer resolution and monitoring.",
       },
       {
         src: ccjDashboard,
+        fullSrc: ccjDashboardFull,
         alt: "Analyst dashboard showing at-risk KPIs including top-up revenue, data usage, and network experience, alongside ARPU, NPS, retention, and campaign conversion performance.",
         caption:
           "Analyst dashboard surfacing at-risk KPIs alongside ARPU, NPS, retention, and campaign performance, with a direct path to mitigate a flagged risk.",
       },
       {
         src: ccjMitigationPlan,
+        fullSrc: ccjMitigationPlanFull,
         alt: "Mitigation plan screen showing an identified KPI risk, its key drivers, and a personalized offer generation builder with audience, tone, and message preview.",
         caption:
           "Mitigation plan for an identified KPI risk, pairing the key drivers behind it with an AI-assisted, tone-controlled offer builder and a live preview of the customer-facing message.",
       },
       {
         src: ccjChatExpanded,
+        fullSrc: ccjChatExpandedFull,
         alt: "Customer service representative interface with an expanded chat panel showing an AI-generated customer summary and suggested course of action alongside the live conversation.",
         caption:
           "The representative's chat interface, with an AI-generated customer summary and suggested course of action alongside the live conversation.",
@@ -197,24 +214,28 @@ const caseStudyContent: Record<
     images: [
       {
         src: cwoMvp1Workflow,
+        fullSrc: cwoMvp1WorkflowFull,
         alt: "MVP1 user flow diagram showing a user searching a project number, the system matching it to a billing package by primary key, and generating the package with a PDF invoice and screenshots.",
         caption:
           "MVP1 flow: searching a project number, matching it to a billing package by primary key, and generating the package with a PDF invoice and screenshots.",
       },
       {
         src: cwoCreationFlow,
+        fullSrc: cwoCreationFlowFull,
         alt: "Billing package creation flow diagram showing role-based branching for admin, accountant, engineer, collections, and view-only report roles, from sign-in through review, export, and finalization.",
         caption:
           "Creation flow: role-based branching from sign-in through review, export, and finalization.",
       },
       {
         src: cwoFlow,
+        fullSrc: cwoFlowFull,
         alt: "Review flow diagram showing a reviewer starting a review, making inline edits with save or discard options, completing the review, and submitting with a git-style commit message.",
         caption:
           "Review flow: starting a review, making inline edits with save or discard, completing the review, and submitting with a git-style commit message before the package is marked ready for review.",
       },
       {
         src: cwoStrategyAlignment,
+        fullSrc: cwoStrategyAlignmentFull,
         alt: "MVP2 scope-definition workshop board showing goals and outcomes, feature prioritization by must-have, should-have, and nice-to-have, and entity relationships between agreement, billing invoice, project, and vendor invoice.",
         caption:
           "MVP2 scope-definition workshop: goals and outcomes, feature prioritization, and the entity relationships used to plan the next phase.",
