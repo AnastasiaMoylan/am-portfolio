@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router";
 import { ZoomIn } from "lucide-react";
 import { projects } from "../data/projects";
 import Button from "../components/ui/Button";
+import Badge from "../components/ui/Badge";
 import ImageLightbox from "../components/work/ImageLightbox";
 // `?preview` yields a downscaled WebP for inline display (see vite.config.ts);
 // the plain import is the full-resolution original used by the lightbox.
@@ -64,8 +65,10 @@ const caseStudyContent: Record<
     },
     snapshotFields: [
       { label: "Role", value: "Lead UX / Product Designer" },
+      { label: "Employer", value: "Amdocs Studios" },
       { label: "Client", value: "Confidential enterprise telecommunications organization" },
       { label: "Timeframe", value: "2025–2026" },
+      { label: "Status", value: "Proof of concept (ongoing platform vision)" },
       { label: "Tools", value: "Figma, React, Tailwind CSS, Vite" },
     ],
     context:
@@ -114,7 +117,10 @@ const caseStudyContent: Record<
     },
     snapshotFields: [
       { label: "Role", value: "Senior UX Designer" },
+      { label: "Employer", value: "Amdocs Studios" },
       { label: "Client", value: "Confidential telecommunications company" },
+      { label: "Timeframe", value: "2024–2025" },
+      { label: "Status", value: "Completed, April 2025" },
       { label: "Tools", value: "Figma, FigJam" },
     ],
     context:
@@ -182,8 +188,10 @@ const caseStudyContent: Record<
     },
     snapshotFields: [
       { label: "Role", value: "Design Lead and UX / Product Strategy Lead" },
+      { label: "Employer", value: "Amdocs Studios" },
       { label: "Client", value: "Confidential telecommunications company" },
       { label: "Timeframe", value: "2024–2025" },
+      { label: "Status", value: "Completed, first MVP delivered" },
       { label: "Tools", value: "Figma, FigJam" },
     ],
     context:
@@ -257,42 +265,92 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-function OverviewCard({
-  tldr,
-  snapshotFields,
-}: {
-  tldr: Tldr;
-  snapshotFields: { label: string; value: string }[];
-}) {
+function SnapshotCard({ fields }: { fields: { label: string; value: string }[] }) {
   return (
-    <div className="border border-border rounded-md overflow-hidden mb-12" aria-label="Case study overview">
-      <div className="bg-secondary p-6">
-        <dl className="flex flex-col gap-4 m-0">
-          <div>
-            <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The challenge</dt>
-            <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.challenge}</dd>
+    <div className="bg-card border border-border rounded-[14px] px-8 py-6 mt-12" aria-label="Case study snapshot">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5">
+        {fields.map(({ label, value }) => (
+          <div key={label}>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-1">{label}</p>
+            <p className="text-[0.9375rem] text-foreground leading-snug">{value}</p>
           </div>
-          <div>
-            <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The system solution</dt>
-            <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.solution}</dd>
-          </div>
-          <div>
-            <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The big win</dt>
-            <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.win}</dd>
-          </div>
-        </dl>
-      </div>
-      <div className="bg-card border-t border-border px-6 py-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {snapshotFields.map(({ label, value }) => (
-            <div key={label}>
-              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-1">{label}</p>
-              <p className="text-[0.9375rem] text-foreground">{value}</p>
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
     </div>
+  );
+}
+
+function OverviewSection({ tldr }: { tldr: Tldr }) {
+  return (
+    <section className="mt-12 pb-12 border-b border-border">
+      <h2 className="text-[1.375rem] font-bold text-foreground pb-3 mb-5 border-b border-border">Overview</h2>
+      <div className="border border-border rounded-[14px] overflow-hidden grid grid-cols-1 md:grid-cols-[2fr_3fr]">
+        <div className="bg-card border-b md:border-b-0 md:border-r border-border p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-accent mb-3">The challenge</p>
+          <p className="text-[0.9375rem] text-foreground leading-[1.7]">{tldr.challenge}</p>
+        </div>
+        <div className="p-8 flex flex-col gap-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-accent mb-2">The outcome</p>
+            <p className="text-[1.0625rem] font-medium text-foreground leading-[1.6]">{tldr.win}</p>
+          </div>
+          <div className="border-t border-border pt-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-2">How I approached it</p>
+            <p className="text-sm text-muted-foreground leading-[1.7]">{tldr.solution}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface Section {
+  id: string;
+  nav: string;
+  heading: string;
+  content: import("react").ReactElement;
+}
+
+function SectionNav({ sections }: { sections: Section[] }) {
+  const [active, setActive] = useState(sections[0]?.id);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-96px 0px -55% 0px", threshold: 0 },
+    );
+    sections.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [sections]);
+
+  return (
+    <nav className="hidden lg:block shrink-0 w-44 self-start sticky top-24" aria-label="On this page">
+      <ul className="list-none p-0 m-0 flex flex-col gap-1">
+        {sections.map((s) => (
+          <li key={s.id}>
+            <a
+              href={`#${s.id}`}
+              className={[
+                "block pl-3.5 pr-3 py-1.5 text-sm no-underline border-l-2 transition-colors duration-150",
+                active === s.id
+                  ? "border-primary text-foreground font-medium"
+                  : "border-transparent text-muted-foreground hover:text-foreground",
+              ].join(" ")}
+            >
+              {s.nav}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
@@ -355,44 +413,50 @@ export default function CaseStudyPage() {
           &larr; All case studies
         </Link>
 
-        <div className="max-w-[48rem] mb-12 pb-12 border-b border-border">
-          <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent mb-4">
-            {content.outcomeLabel}
-          </p>
+        <div className="max-w-[48rem]">
           <h1 className="text-[clamp(1.75rem,4vw,3rem)] font-bold text-foreground leading-[1.15]">
             {project.title}
           </h1>
           <p className="text-[clamp(1.0625rem,2vw,1.25rem)] font-medium text-muted-foreground leading-[1.5] mt-4">
             {project.tagline}
           </p>
+          <ul className="list-none p-0 m-0 flex flex-wrap gap-2 mt-6">
+            {project.tags.map((tag) => (
+              <li key={tag}>
+                <Badge variant="accent">{tag}</Badge>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <OverviewCard tldr={content.tldr} snapshotFields={content.snapshotFields} />
+        <SnapshotCard fields={content.snapshotFields} />
 
-        <div className="flex flex-col gap-12">
-          {[
-            { heading: "Context and stakes", content: <p className="text-base text-muted-foreground leading-[1.7] max-w-[46rem]">{content.context}</p> },
-            { heading: "My ownership", content: <BulletList items={content.ownership} /> },
-            { heading: "Key decisions", content: <BulletList items={content.keyDecisions} /> },
-            { heading: "States, edge cases, and recovery", content: <BulletList items={content.states} /> },
-            { heading: "Execution", content: <ImageGallery images={content.images} /> },
-            content.outcomeText && {
-              heading: "Outcome and impact",
-              content: <p className="text-base text-muted-foreground leading-[1.7] max-w-[46rem]">{content.outcomeText}</p>,
-            },
-            content.learned && {
-              heading: "What I learned",
-              content: <p className="text-base text-muted-foreground leading-[1.7] max-w-[46rem]">{content.learned}</p>,
-            },
-          ].filter((section): section is { heading: string; content: import("react").ReactElement } => Boolean(section)).map(({ heading, content: sectionContent }) => (
-            <section key={heading} className="flex flex-col gap-5">
-              <h2 className="text-[1.375rem] font-bold text-foreground pb-3 border-b border-border">
-                {heading}
-              </h2>
-              {sectionContent}
-            </section>
-          ))}
-        </div>
+        <OverviewSection tldr={content.tldr} />
+
+        {(() => {
+          const sections: Section[] = [
+            { id: "context", nav: "Context", heading: "Context and stakes", content: <p className="text-base text-muted-foreground leading-[1.7]">{content.context}</p> },
+            { id: "ownership", nav: "My ownership", heading: "My ownership", content: <BulletList items={content.ownership} /> },
+            { id: "decisions", nav: "Key decisions", heading: "Key decisions", content: <BulletList items={content.keyDecisions} /> },
+            { id: "states", nav: "Edge cases", heading: "States, edge cases, and recovery", content: <BulletList items={content.states} /> },
+            { id: "execution", nav: "Execution", heading: "Execution", content: <ImageGallery images={content.images} /> },
+            ...(content.outcomeText ? [{ id: "outcome", nav: "Outcome", heading: "Outcome and impact", content: <p className="text-base text-muted-foreground leading-[1.7]">{content.outcomeText}</p> }] : []),
+            ...(content.learned ? [{ id: "learned", nav: "What I learned", heading: "What I learned", content: <p className="text-base text-muted-foreground leading-[1.7]">{content.learned}</p> }] : []),
+          ];
+          return (
+            <div className="flex flex-col lg:flex-row gap-12 pt-12">
+              <SectionNav sections={sections} />
+              <div className="flex-1 min-w-0 flex flex-col gap-14">
+                {sections.map(({ id, heading, content: sectionContent }) => (
+                  <section key={id} id={id} className="flex flex-col gap-4 scroll-mt-24">
+                    <h2 className="text-xl font-bold text-foreground">{heading}</h2>
+                    {sectionContent}
+                  </section>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         <div className="mt-16 pt-12 border-t border-border flex flex-wrap justify-between items-center gap-4">
           <div>
