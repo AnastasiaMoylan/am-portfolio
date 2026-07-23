@@ -2,255 +2,21 @@ import { useState, useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router";
 import { ZoomIn } from "lucide-react";
 import { projects } from "../data/projects";
+import { caseStudies } from "../data/caseStudies";
+import type {
+  CaseStudy,
+  CaseStudyImage,
+  Decision,
+  Evidence,
+  Impact,
+  Reflection,
+  StateRecovery,
+  TeamMember,
+  Tldr,
+} from "../data/caseStudies";
 import Button from "../components/ui/Button";
 import Badge from "../components/ui/Badge";
 import ImageLightbox from "../components/work/ImageLightbox";
-// `?preview` yields a downscaled WebP for inline display (see vite.config.ts);
-// the plain import is the full-resolution original used by the lightbox.
-import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png?preview";
-import financeAIFlowFull from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
-import ccjUserFlow from "../assets/case-studies/ccj/user-flow.jpg?preview";
-import ccjUserFlowFull from "../assets/case-studies/ccj/user-flow.jpg";
-import ccjDashboard from "../assets/case-studies/ccj/dashboard-performance.jpg?preview";
-import ccjDashboardFull from "../assets/case-studies/ccj/dashboard-performance.jpg";
-import ccjMitigationPlan from "../assets/case-studies/ccj/mitigation-plan.jpg?preview";
-import ccjMitigationPlanFull from "../assets/case-studies/ccj/mitigation-plan.jpg";
-import ccjChatExpanded from "../assets/case-studies/ccj/chat-expanded.png?preview";
-import ccjChatExpandedFull from "../assets/case-studies/ccj/chat-expanded.png";
-import cwoMvp1Workflow from "../assets/case-studies/cwo/mvp1-workflow.jpg?preview";
-import cwoMvp1WorkflowFull from "../assets/case-studies/cwo/mvp1-workflow.jpg";
-import cwoCreationFlow from "../assets/case-studies/cwo/creation-flow.jpg?preview";
-import cwoCreationFlowFull from "../assets/case-studies/cwo/creation-flow.jpg";
-import cwoFlow from "../assets/case-studies/cwo/flow.jpg?preview";
-import cwoFlowFull from "../assets/case-studies/cwo/flow.jpg";
-import cwoStrategyAlignment from "../assets/case-studies/cwo/strategy-alignment.jpg?preview";
-import cwoStrategyAlignmentFull from "../assets/case-studies/cwo/strategy-alignment.jpg";
-
-interface CaseStudyImage {
-  src: string;
-  fullSrc: string;
-  alt: string;
-  caption: string;
-}
-
-interface Tldr {
-  challenge: string;
-  solution: string;
-  win: string;
-}
-
-const caseStudyContent: Record<
-  string,
-  {
-    outcomeLabel: string;
-    tldr: Tldr;
-    snapshotFields: { label: string; value: string }[];
-    context: string;
-    ownership: string[];
-    keyDecisions: string[];
-    states: string[];
-    images: CaseStudyImage[];
-    outcomeText?: string;
-    learned?: string;
-  }
-> = {
-  "governed-ai-finance-workspace": {
-    outcomeLabel: "Governed AI workspace · Completed, 2025–2026",
-    tldr: {
-      challenge:
-        "Finance teams needed AI-assisted analysis without losing the governance controls, audit trails, and human accountability financial operations require.",
-      solution:
-        "A governed workspace that separates experimentation from production, makes AI activity fully inspectable, and requires human approval before consequential actions.",
-      win: "Gave finance leaders the evidence they needed to trust and approve AI-assisted work.",
-    },
-    snapshotFields: [
-      { label: "Role", value: "Lead UX / Product Designer" },
-      { label: "Employer", value: "Amdocs Studios" },
-      { label: "Client", value: "Confidential enterprise telecommunications organization" },
-      { label: "Timeframe", value: "2025–2026" },
-      { label: "Status", value: "Proof of concept (ongoing platform vision)" },
-      { label: "Tools", value: "Figma, React, Tailwind CSS, Vite" },
-    ],
-    context:
-      "Enterprise finance teams needed AI-assisted analysis and transformation tools without losing the governance controls, audit trails, and human accountability that financial operations require. The core tension: AI can accelerate analysis, but accountants, controllers, and compliance stakeholders need to remain responsible for journal entries, accruals, and close work.",
-    ownership: [
-      "Led the product model for a governed enterprise-finance workspace connecting Workflow Builder, Sandbox, promotion gates, Production, and monitoring for accountants, analysts, managers/controllers, finance leaders, admins, and viewers.",
-      "Separated experimentation from production so users could test Python analysis, transformations, datasets, and AI-assisted plans without bypassing financial controls; made environment, data access, permissions, and promotion requirements visible throughout the flow.",
-      "Designed AI uncertainty and failure as first-class interaction states: partial or low-confidence output, failed data/Python operations, missing permissions, blocked promotion, exception handling, preserved work, retry and escalation, plus pause/resume/rollback concepts for consequential workflows.",
-      "Made AI activity inspectable through previews, editable plans, generated-code visibility, evidence, logs, lineage, versions, human approvals, and audit history; preserved human responsibility for accruals, journal entries, close work, and other high-consequence actions.",
-      "Created PRDs, flows, role models, screeners, recruitment materials, training plans, and moderated research for a working POC.",
-    ],
-    keyDecisions: [
-      "Separated experimentation from production as two distinct environments rather than gating a single workspace with permissions, so users could test Python analysis, transformations, and AI-assisted plans in a sandbox with no path to silently affecting financial controls. Promotion to production became an explicit, reviewable event instead of a hidden setting.",
-      "Designed promotion as a gated checklist with visible unmet requirements rather than a one-click publish, so a blocked promotion explained exactly which controls, approvals, or data-access conditions weren't yet met, turning governance from an invisible backend rule into something users could see and resolve.",
-      "Treated AI uncertainty and failure as first-class interaction states, partial or low-confidence output, failed data or Python operations, preserved work on error, retry and escalation, instead of hiding them, so the workspace stayed trustworthy at exactly the moments AI is least reliable.",
-    ],
-    outcomeText:
-      "Defined a product model that separated experimentation from production, made AI activity inspectable at every step, and gave finance leaders the evidence they needed to trust and approve AI-assisted work. The result was a working POC that gave stakeholders a concrete, testable model for how governed AI could operate inside financial operations, rather than an abstract promise.",
-    learned:
-      "The hardest part wasn't making AI capable, it was making its governance legible. Early on, controls lived in the backend and users had to trust that they existed. The work got better once every control had a visible surface: an environment label, a promotion checklist, an audit entry. Governance people can't see isn't governance they'll approve.",
-    states: [
-      "Partial or low-confidence AI output: visual indicator, explanation, and option to proceed with review",
-      "Failed Python/data operations: preserved work state, clear error, retry and escalation path",
-      "Missing permissions: blocked state with explanation and request-access path",
-      "Blocked promotion: reason visible, checklist of unmet requirements",
-      "Pause/resume/rollback: for consequential multi-step workflows",
-    ],
-    images: [
-      {
-        src: financeAIFlow,
-        fullSrc: financeAIFlowFull,
-        alt: "End-to-end flow diagram for the Finance AI Transformation, showing Governance, Risk and Compliance governing Agentic Workflows, Data Products, Command Center, and the full pipeline through User Experiences, Feedback and Iteration, Problem Framing, Data Discovery and Ingestion, and Finance Sandbox.",
-        caption:
-          "End-to-end flow: governance and compliance layer governing agentic workflows, shared data products, and the full pipeline from user experience through finance sandbox exploration.",
-      },
-    ],
-  },
-  "connected-customer-journey": {
-    outcomeLabel: "Connected customer journey · Completed, April 2025",
-    tldr: {
-      challenge:
-        "A telecommunications operator had predictive churn signals but no connected path from a signal to an action anyone could execute.",
-      solution:
-        "One end-to-end mitigation flow: churn detection, AI-assisted messaging, and human review in a single journey, with an AI chatbot handling routine cases and escalating to a person when sentiment called for it.",
-      win: "Turned a model score into a reviewed, edited, and launched action, with monitoring built in and human review required before anything reached a customer.",
-    },
-    snapshotFields: [
-      { label: "Role", value: "Senior UX Designer" },
-      { label: "Employer", value: "Amdocs Studios" },
-      { label: "Client", value: "Confidential telecommunications company" },
-      { label: "Timeframe", value: "2024–2025" },
-      { label: "Status", value: "Completed, April 2025" },
-      { label: "Tools", value: "Figma, FigJam" },
-    ],
-    context:
-      "A telecommunications operator needed to turn predictive signals into action across several channels: analysts, service teams, an AI layer, and the partner systems feeding it. I designed the connected journey that tied them together, from detection through human reviewed action to launch and monitoring.",
-    ownership: [
-      "Designed the data-driven journey platform connecting dynamic segmentation, predictive churn signals, sentiment and NPS health, AI-assisted messaging, offer customization, and performance monitoring.",
-      "Turned model output into decision support: predictions paired with customer context, lifecycle stage, behavior, sentiment, and available actions, not an opaque score presented as a final answer.",
-      "Created the end-to-end mitigation flow: risk detection, context review, human-selected action, message or offer adjustment, launch, monitoring, iteration.",
-      "Preserved human control by requiring users to review and edit AI-assisted communication before delivery.",
-    ],
-    keyDecisions: [
-      "Built customer segments dynamically from churn-risk criteria (issues, historic behavior, likelihood to churn) rather than static lists, so the model stayed correlated with real journey data instead of a one-time snapshot.",
-      "Treated each offer as a hypothesis first, with a what-if analysis tool that let analysts adjust inputs and watch the model's inference and recommended offer update in response, refined over time by a human-feedback loop.",
-      "Routed customers to an AI chatbot first, transferring to a human customer service representative only when sentiment analysis and account context indicated the interaction needed a person, keeping routine requests fast while protecting the moments that needed empathy.",
-    ],
-    states: [
-      "Angry or high-churn-risk customer: prompts the representative to use generative AI to draft an empathetic, tone-matched message based on the specific triggers detected, not a generic response",
-      "Representative needs to go further than the model recommends: access to additional offers the automated system doesn't yet know about",
-      "Reviewing a case mid-conversation: the customer's personal file, offer history, and a summarized view of prior offer variations stay visible without leaving the chat",
-      "Offer declined or resolution unsuccessful: loops back to offer adjustment rather than ending in a dead end",
-    ],
-    outcomeText:
-      "Designed an end-to-end mitigation flow that turned a model score into a reviewed, edited, and launched action, with monitoring built in. Human review of AI-assisted messaging was required before anything reached a customer.",
-    learned:
-      "A model score is not a decision. The project reset once we stopped treating the churn prediction as the answer and started treating it as the opening of a decision the representative still had to make, with context, options, and a way to edit anything AI suggested before it reached a customer.",
-    images: [
-      {
-        src: ccjUserFlow,
-        fullSrc: ccjUserFlowFull,
-        alt: "User flow diagram for the connected customer journey, showing an analyst path from dashboard alert through offer generation, a customer journey path from risk event through AI chatbot and human customer-service handoff, and a customer-service representative path ending in resolution.",
-        caption:
-          "End-to-end flow: from churn-risk detection and segment creation, through AI chatbot and human customer-service handoff, to offer resolution and monitoring.",
-      },
-      {
-        src: ccjDashboard,
-        fullSrc: ccjDashboardFull,
-        alt: "Analyst dashboard showing at-risk KPIs including top-up revenue, data usage, and network experience, alongside ARPU, NPS, retention, and campaign conversion performance.",
-        caption:
-          "Analyst dashboard surfacing at-risk KPIs alongside ARPU, NPS, retention, and campaign performance, with a direct path to mitigate a flagged risk.",
-      },
-      {
-        src: ccjMitigationPlan,
-        fullSrc: ccjMitigationPlanFull,
-        alt: "Mitigation plan screen showing an identified KPI risk, its key drivers, and a personalized offer generation builder with audience, tone, and message preview.",
-        caption:
-          "Mitigation plan for an identified KPI risk, pairing the key drivers behind it with an AI-assisted, tone-controlled offer builder and a live preview of the customer-facing message.",
-      },
-      {
-        src: ccjChatExpanded,
-        fullSrc: ccjChatExpandedFull,
-        alt: "Customer service representative interface with an expanded chat panel showing an AI-generated customer summary and suggested course of action alongside the live conversation.",
-        caption:
-          "The representative's chat interface, with an AI-generated customer summary and suggested course of action alongside the live conversation.",
-      },
-    ],
-  },
-  "auditable-billing-workflow": {
-    outcomeLabel: "Auditable billing workflow · Completed, 2024–2025",
-    tldr: {
-      challenge:
-        "A telecommunications client's billing-package process was fragmented across tools, owned by no single role, and had no recovery path when automation failed.",
-      solution:
-        "A guided B2B workflow with a shared status model, role-based permissions, and a full audit trail replacing manual, ownerless assembly.",
-      win: "Delivered a first MVP giving every role a shared view of progress, plus a phased roadmap to full automation.",
-    },
-    snapshotFields: [
-      { label: "Role", value: "Design Lead and UX / Product Strategy Lead" },
-      { label: "Employer", value: "Amdocs Studios" },
-      { label: "Client", value: "Confidential telecommunications company" },
-      { label: "Timeframe", value: "2024–2025" },
-      { label: "Status", value: "Completed, first MVP delivered" },
-      { label: "Tools", value: "Figma, FigJam" },
-    ],
-    context:
-      "A telecommunications client's billing-package process was fragmented across tools, owned by no single role, and had no recovery path when automation failed. Work disappeared mid-process and nobody could tell where it had gone. Assembling a single billing package meant manually pulling project data, screenshots, and invoices from multiple systems with no shared status model or audit trail.",
-    ownership: [
-      "Led a guided B2B workflow replacing fragmented billing-package assembly, spanning project selection, evidence retrieval, screenshot generation, document merging, review, approval, and completion.",
-      "Mapped the complete operational flow across admins, accountants, engineers, owners, and reviewers, including missing evidence, failed automation, loading, validation, interim spreadsheet editing, handoffs, and recovery without loss of progress.",
-      "Defined a reusable status model (Initiated, In Progress, Review, Approved, Finalized, Completed) with permissions, ownership, notifications, activity history, UAT sign-off, and audit-trail concepts.",
-      "Partnered with engineering and UI development during implementation, moving unsupported dashboard functionality into a visible future backlog instead of compromising the active release.",
-      "Delivered a completed first MVP for interface and project querying, plus a phased roadmap for document integration, in-product editing, expanded review, and automation.",
-    ],
-    keyDecisions: [
-      "Modeled role-based access as a first-class flow branch rather than a permissions afterthought: admins, accountants, engineers, and collections could create packages, while a view-only report role and an engineer-specific one-time report view kept read access scoped to what each role actually needed.",
-      "Made billing-package identity explicit (the package's primary key is the project number) so the system could tell the difference between resuming a previously created package and starting a new one, instead of silently duplicating work.",
-      "Built review as its own state machine: a reviewer starts a session, makes inline edits with save or discard, and submits with a git-style commit message, so changes stayed traceable and reversible before a package was finalized.",
-    ],
-    states: [
-      "Invalid or unmatched project number entered: explicit error state before any billing package is created",
-      "Billing package primary key not found: routes to creating a new billing package instead of failing silently",
-      "Automation or feeder-system failure: work in progress is preserved rather than lost, with a clear retry path",
-      "Review in progress: all other users see view-only access until the review is complete, so no one edits a package mid-review",
-      "Discarded inline edit: reverts cleanly without affecting the rest of the package",
-    ],
-    outcomeText:
-      "Delivered a first MVP that gave every role a shared view of progress, defined a status model that made ownership and handoffs explicit, and laid a phased roadmap for document integration and full automation.",
-    learned:
-      "Most of the value came from the status model, not the screens. Once every role shared one vocabulary for where a package was, Initiated, In Progress, Review, Approved, Finalized, Completed, the \"where did the work go\" problem largely dissolved. The interface was almost downstream of getting that shared language right.",
-    images: [
-      {
-        src: cwoMvp1Workflow,
-        fullSrc: cwoMvp1WorkflowFull,
-        alt: "MVP1 user flow diagram showing a user searching a project number, the system matching it to a billing package by primary key, and generating the package with a PDF invoice and screenshots.",
-        caption:
-          "MVP1 flow: searching a project number, matching it to a billing package by primary key, and generating the package with a PDF invoice and screenshots.",
-      },
-      {
-        src: cwoCreationFlow,
-        fullSrc: cwoCreationFlowFull,
-        alt: "Billing package creation flow diagram showing role-based branching for admin, accountant, engineer, collections, and view-only report roles, from sign-in through review, export, and finalization.",
-        caption:
-          "Creation flow: role-based branching from sign-in through review, export, and finalization.",
-      },
-      {
-        src: cwoFlow,
-        fullSrc: cwoFlowFull,
-        alt: "Review flow diagram showing a reviewer starting a review, making inline edits with save or discard options, completing the review, and submitting with a git-style commit message.",
-        caption:
-          "Review flow: starting a review, making inline edits with save or discard, completing the review, and submitting with a git-style commit message before the package is marked ready for review.",
-      },
-      {
-        src: cwoStrategyAlignment,
-        fullSrc: cwoStrategyAlignmentFull,
-        alt: "MVP2 scope-definition workshop board showing goals and outcomes, feature prioritization by must-have, should-have, and nice-to-have, and entity relationships between agreement, billing invoice, project, and vendor invoice.",
-        caption:
-          "MVP2 scope-definition workshop: goals and outcomes, feature prioritization, and the entity relationships used to plan the next phase.",
-      },
-    ],
-  },
-};
 
 function BulletList({ items }: { items: string[] }) {
   return (
@@ -265,7 +31,13 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-function SnapshotCard({ fields }: { fields: { label: string; value: string }[] }) {
+function SnapshotCard({
+  fields,
+  team,
+}: {
+  fields: { label: string; value: string }[];
+  team?: TeamMember[];
+}) {
   return (
     <div className="bg-card border border-border rounded-[14px] px-8 py-6 mt-12" aria-label="Case study snapshot">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5">
@@ -275,6 +47,14 @@ function SnapshotCard({ fields }: { fields: { label: string; value: string }[] }
             <p className="text-[0.9375rem] text-foreground leading-snug">{value}</p>
           </div>
         ))}
+        {team && team.length > 0 && (
+          <div className="sm:col-span-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-1">Team</p>
+            <p className="text-[0.9375rem] text-foreground leading-snug">
+              {team.map((t) => t.role).join(", ")}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -291,8 +71,8 @@ function OverviewSection({ tldr }: { tldr: Tldr }) {
         </div>
         <div className="p-8 flex flex-col gap-6">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-accent mb-2">The outcome</p>
-            <p className="text-[1.0625rem] font-medium text-foreground leading-[1.6]">{tldr.win}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-accent mb-2">The result</p>
+            <p className="text-[1.0625rem] font-medium text-foreground leading-[1.6]">{tldr.result}</p>
           </div>
           <div className="border-t border-border pt-5">
             <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-2">How I approached it</p>
@@ -301,6 +81,202 @@ function OverviewSection({ tldr }: { tldr: Tldr }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function EvidenceInsight({ evidence }: { evidence: Evidence }) {
+  return (
+    <div className="flex flex-col gap-6">
+      {evidence.body && <p className="text-base text-muted-foreground leading-[1.7]">{evidence.body}</p>}
+      {evidence.findings && evidence.findings.length > 0 && (
+        <ul className="list-none p-0 m-0 flex flex-col gap-4">
+          {evidence.findings.map(({ finding, response }) => (
+            <li key={finding} className="border-l-2 border-border pl-5 flex flex-col gap-1">
+              <p className="text-[0.9375rem] text-foreground leading-[1.6]">{finding}</p>
+              <p className="text-[0.9375rem] text-muted-foreground leading-[1.6]">
+                <span className="text-accent">&rarr;</span> {response}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+      <blockquote className="border-l-2 border-accent bg-card rounded-r-md pl-6 pr-6 py-5 m-0">
+        <p className="text-[1.0625rem] font-medium text-foreground leading-[1.6]">{evidence.insight}</p>
+      </blockquote>
+      {evidence.principle && (
+        <p className="text-[0.9375rem] text-muted-foreground leading-[1.7] italic">{evidence.principle}</p>
+      )}
+    </div>
+  );
+}
+
+function RoleTeam({ owned, team }: { owned: string[]; team?: TeamMember[] }) {
+  return (
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <h3 className="text-xs font-semibold uppercase tracking-[0.08em] text-accent">I owned</h3>
+        <BulletList items={owned} />
+      </div>
+      {team && team.length > 0 && (
+        <div className="flex flex-col gap-4">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">I worked with</h3>
+          <ul className="list-none p-0 m-0 flex flex-col gap-2">
+            {team.map(({ role, owned: theirs }) => (
+              <li key={role} className="text-base text-muted-foreground leading-[1.65]">
+                <span className="text-foreground">{role}</span>
+                {theirs && <> — {theirs}</>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function KeyDecisions({ decisions }: { decisions: Decision[] }) {
+  return (
+    <ol className="list-none p-0 m-0 flex flex-col gap-8">
+      {decisions.map(({ decision, rationale, rejected, tradeoff }) => (
+        <li key={decision} className="flex flex-col gap-2">
+          <p className="text-base font-semibold text-foreground leading-[1.5]">{decision}</p>
+          <p className="text-base text-muted-foreground leading-[1.65]">{rationale}</p>
+          {(rejected || tradeoff) && (
+            <p className="text-[0.9375rem] text-muted-foreground/80 leading-[1.6] border-l-2 border-border pl-4 mt-1">
+              {rejected && <>Instead of {rejected}</>}
+              {rejected && tradeoff && " — "}
+              {tradeoff}
+              {rejected && !tradeoff && "."}
+            </p>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function StatesRecovery({ states }: { states: StateRecovery[] }) {
+  return (
+    <dl className="m-0 flex flex-col gap-5">
+      {states.map(({ state, userSees, recovery }) => (
+        <div key={state} className="flex flex-col gap-1">
+          <dt className="text-base font-semibold text-foreground leading-[1.5]">{state}</dt>
+          {userSees && (
+            <dd className="m-0 text-[0.9375rem] text-muted-foreground leading-[1.6]">
+              <span className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground/70 mr-2">
+                User sees
+              </span>
+              {userSees}
+            </dd>
+          )}
+          {recovery && (
+            <dd className="m-0 text-[0.9375rem] text-muted-foreground leading-[1.6]">
+              <span className="text-xs font-semibold uppercase tracking-[0.08em] text-accent mr-2">Recovery</span>
+              {recovery}
+            </dd>
+          )}
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function PendingVisuals({ note, planned }: { note?: string; planned?: string[] }) {
+  return (
+    <div className="bg-card border border-dashed border-border rounded-[14px] px-8 py-7 flex flex-col gap-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">Visuals pending</p>
+      {note && <p className="text-[0.9375rem] text-muted-foreground leading-[1.7]">{note}</p>}
+      {planned && planned.length > 0 && (
+        <>
+          <p className="text-[0.9375rem] text-foreground leading-[1.6]">Planned evidence-bearing visuals:</p>
+          <ul className="list-none p-0 m-0 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+            {planned.map((item) => (
+              <li key={item} className="text-[0.9375rem] text-muted-foreground leading-[1.6] pl-5 relative">
+                <span className="absolute left-0 text-accent">—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      <p className="text-[0.9375rem] text-muted-foreground leading-[1.6]">
+        Walkthrough available on request.{" "}
+        <Link to="/contact" className="text-accent hover:text-foreground no-underline transition-colors duration-150">
+          Get in touch
+        </Link>
+        .
+      </p>
+    </div>
+  );
+}
+
+function OutcomeImpact({ impact }: { impact: Impact }) {
+  const lines = [
+    { label: "Business", value: impact.business },
+    { label: "User", value: impact.user },
+    { label: "Organizational", value: impact.organizational },
+  ].filter((l) => l.value);
+
+  return (
+    <div className="flex flex-col gap-6">
+      <p className="text-[1.0625rem] font-medium text-foreground leading-[1.6]">{impact.headline}</p>
+
+      {lines.length > 0 && (
+        <dl className="m-0 flex flex-col gap-4">
+          {lines.map(({ label, value }) => (
+            <div key={label} className="flex flex-col gap-1">
+              <dt className="text-xs font-semibold uppercase tracking-[0.08em] text-accent">{label}</dt>
+              <dd className="m-0 text-base text-muted-foreground leading-[1.65]">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {impact.before && impact.after && (
+        <div className="border border-border rounded-[14px] overflow-hidden grid grid-cols-1 md:grid-cols-2">
+          <div className="p-6 border-b md:border-b-0 md:border-r border-border">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-2">Before</p>
+            <p className="text-[0.9375rem] text-muted-foreground leading-[1.65]">{impact.before}</p>
+          </div>
+          <div className="bg-card p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-accent mb-2">After</p>
+            <p className="text-[0.9375rem] text-foreground leading-[1.65]">{impact.after}</p>
+          </div>
+        </div>
+      )}
+
+      {impact.proof && impact.proof.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">Validated proof</p>
+          <BulletList items={impact.proof} />
+        </div>
+      )}
+
+      {impact.metricStatus && (
+        <p className="text-[0.8125rem] text-muted-foreground/80 leading-[1.6] italic">{impact.metricStatus}</p>
+      )}
+    </div>
+  );
+}
+
+function ReflectionBlock({ reflection }: { reflection: Reflection }) {
+  return (
+    <div className="flex flex-col gap-5">
+      <p className="text-base text-muted-foreground leading-[1.7]">{reflection.learned}</p>
+      {reflection.wouldChange && (
+        <div className="flex flex-col gap-1">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+            What I would change
+          </p>
+          <p className="text-base text-muted-foreground leading-[1.7]">{reflection.wouldChange}</p>
+        </div>
+      )}
+      {reflection.principle && (
+        <p className="text-[1.0625rem] font-medium text-foreground leading-[1.6] border-l-2 border-accent pl-5">
+          {reflection.principle}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -381,13 +357,94 @@ function ImageGallery({ images }: { images: CaseStudyImage[] }) {
   );
 }
 
+/** Composes the framework's beats in Frame -> Think -> Land order, skipping empty ones. */
+function buildSections(content: CaseStudy): Section[] {
+  const sections: Section[] = [
+    {
+      id: "context",
+      nav: "Context",
+      heading: "Context and stakes",
+      content: <p className="text-base text-muted-foreground leading-[1.7]">{content.context}</p>,
+    },
+  ];
+
+  if (content.evidence) {
+    sections.push({
+      id: "evidence",
+      nav: "Evidence",
+      heading: "Evidence and insight",
+      content: <EvidenceInsight evidence={content.evidence} />,
+    });
+  }
+
+  sections.push(
+    {
+      id: "role",
+      nav: "Role and team",
+      heading: "Role and team",
+      content: <RoleTeam owned={content.owned} team={content.team} />,
+    },
+    {
+      id: "decisions",
+      nav: "Key decisions",
+      heading: "Key decisions",
+      content: <KeyDecisions decisions={content.decisions} />,
+    },
+  );
+
+  if (content.states && content.states.length > 0) {
+    sections.push({
+      id: "states",
+      nav: "Edge cases",
+      heading: "States, edge cases, and recovery",
+      content: <StatesRecovery states={content.states} />,
+    });
+  }
+
+  if (content.images && content.images.length > 0) {
+    sections.push({
+      id: "execution",
+      nav: "Execution",
+      heading: "Execution",
+      content: <ImageGallery images={content.images} />,
+    });
+  } else if (content.visualsPending) {
+    sections.push({
+      id: "execution",
+      nav: "Execution",
+      heading: "Execution",
+      content: <PendingVisuals note={content.visualsPendingNote} planned={content.plannedVisuals} />,
+    });
+  }
+
+  if (content.impact) {
+    sections.push({
+      id: "outcome",
+      nav: "Outcome",
+      heading: "Outcome and impact",
+      content: <OutcomeImpact impact={content.impact} />,
+    });
+  }
+
+  if (content.reflection) {
+    sections.push({
+      id: "reflection",
+      nav: "Reflection",
+      heading: "Reflection",
+      content: <ReflectionBlock reflection={content.reflection} />,
+    });
+  }
+
+  return sections;
+}
+
 export default function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) return <Navigate to="/work" replace />;
 
-  const content = caseStudyContent[slug!];
+  const content = caseStudies[slug!];
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
@@ -405,6 +462,8 @@ export default function CaseStudyPage() {
       </div>
     );
   }
+
+  const sections = buildSections(content);
 
   return (
     <div className="py-16 pb-24">
@@ -429,34 +488,21 @@ export default function CaseStudyPage() {
           </ul>
         </div>
 
-        <SnapshotCard fields={content.snapshotFields} />
+        <SnapshotCard fields={content.snapshotFields} team={content.team} />
 
         <OverviewSection tldr={content.tldr} />
 
-        {(() => {
-          const sections: Section[] = [
-            { id: "context", nav: "Context", heading: "Context and stakes", content: <p className="text-base text-muted-foreground leading-[1.7]">{content.context}</p> },
-            { id: "ownership", nav: "My ownership", heading: "My ownership", content: <BulletList items={content.ownership} /> },
-            { id: "decisions", nav: "Key decisions", heading: "Key decisions", content: <BulletList items={content.keyDecisions} /> },
-            { id: "states", nav: "Edge cases", heading: "States, edge cases, and recovery", content: <BulletList items={content.states} /> },
-            { id: "execution", nav: "Execution", heading: "Execution", content: <ImageGallery images={content.images} /> },
-            ...(content.outcomeText ? [{ id: "outcome", nav: "Outcome", heading: "Outcome and impact", content: <p className="text-base text-muted-foreground leading-[1.7]">{content.outcomeText}</p> }] : []),
-            ...(content.learned ? [{ id: "learned", nav: "What I learned", heading: "What I learned", content: <p className="text-base text-muted-foreground leading-[1.7]">{content.learned}</p> }] : []),
-          ];
-          return (
-            <div className="flex flex-col lg:flex-row gap-12 pt-12">
-              <SectionNav sections={sections} />
-              <div className="flex-1 min-w-0 flex flex-col gap-14">
-                {sections.map(({ id, heading, content: sectionContent }) => (
-                  <section key={id} id={id} className="flex flex-col gap-4 scroll-mt-24">
-                    <h2 className="text-xl font-bold text-foreground">{heading}</h2>
-                    {sectionContent}
-                  </section>
-                ))}
-              </div>
-            </div>
-          );
-        })()}
+        <div className="flex flex-col lg:flex-row gap-12 pt-12">
+          <SectionNav sections={sections} />
+          <div className="flex-1 min-w-0 flex flex-col gap-14">
+            {sections.map(({ id, heading, content: sectionContent }) => (
+              <section key={id} id={id} className="flex flex-col gap-4 scroll-mt-24">
+                <h2 className="text-xl font-bold text-foreground">{heading}</h2>
+                {sectionContent}
+              </section>
+            ))}
+          </div>
+        </div>
 
         <div className="mt-16 pt-12 border-t border-border flex flex-wrap justify-between items-center gap-4">
           <div>

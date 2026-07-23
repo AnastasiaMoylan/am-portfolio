@@ -18,6 +18,8 @@ export interface Project {
 import financeAIFlow from "../imports/Finance_AI_Transformation_-_End-to-End_Flow.png";
 import ccjDashboard from "../assets/case-studies/ccj/dashboard-performance.jpg";
 import cwoMvp1Workflow from "../assets/case-studies/cwo/mvp1-workflow.jpg";
+// `?preview` keeps the very wide flow diagram light enough for a card thumbnail.
+import diUserFlows from "../assets/case-studies/di/user-flows.jpg?preview";
 
 export const projects: Project[] = [
   {
@@ -52,8 +54,9 @@ export const projects: Project[] = [
   },
   {
     slug: "enterprise-document-knowledge",
-    title: "Verifiable AI Answers",
-    tagline: "Making enterprise AI answers verifiable across complex documents",
+    image: diUserFlows,
+    title: "A Tailorable Enterprise AI Platform",
+    tagline: "Giving business units their own AI toolbox on centrally maintained rails",
     problem:
       "Knowledge workers were getting AI-generated answers they couldn't verify: no source context, no way to compare documents side-by-side, no path back to the original evidence. Trust eroded fast.",
     role: "UX and Product Strategy Lead",
