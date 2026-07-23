@@ -56,7 +56,7 @@ const domains = [
 const tools = [
   "Figma", "FigJam", "Figma variables and components", "Figma Make",
   "React", "Tailwind CSS", "Vite", "Flywheel UI", "DCU",
-  "Windsurf", "Jira", "Notion",
+  "Claude Code", "Windsurf", "Jira", "Notion",
 ];
 
 function SectionBlock({ label, children }: { label: string; children: React.ReactNode }) {
@@ -90,6 +90,9 @@ export default function AboutPage() {
               </p>
               <p>
                 I also manage a review program for my agency's finance practice, checking completed work against what's required and leading critique that explains reasoning instead of just corrections.
+              </p>
+              <p>
+                I don't wait for direction: I set the vision, run the workshops, and drive alignment across an organization to get it built.
               </p>
             </div>
           </SectionBlock>

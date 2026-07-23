@@ -2,7 +2,6 @@ import { projects } from "./projects";
 
 const SITE = "https://anastasiamoylan.github.io";
 const NAME = "Anastasia Novelly Moylan";
-const SUFFIX = `${NAME}, Lead Experience Designer`;
 
 export interface PageMeta {
   title: string;
@@ -12,32 +11,32 @@ export interface PageMeta {
 
 const staticMeta: Record<string, { title: string; description: string }> = {
   "/": {
-    title: SUFFIX,
+    title: `${NAME} — Lead Experience Designer`,
     description:
       "Anastasia Novelly Moylan is a Lead Experience Designer specializing in end-to-end journey design and systems for enterprise AI, B2B SaaS, and finance products.",
   },
   "/work": {
-    title: `Selected work — ${SUFFIX}`,
+    title: `Work — ${NAME}`,
     description:
       "End-to-end enterprise case studies: governed AI for finance, an auditable billing workflow, verifiable document intelligence, and a connected customer-journey platform.",
   },
   "/philosophy": {
-    title: `Design philosophy — ${SUFFIX}`,
+    title: `Philosophy — ${NAME}`,
     description:
       "Principles tested against real enterprise engagements: design flows not screens, design through implementation, and make AI uncertainty visible and reversible.",
   },
   "/about": {
-    title: `About — ${SUFFIX}`,
+    title: `About — ${NAME}`,
     description:
       "10+ years designing complex enterprise products across finance, telecommunications, aviation, and AI-enabled B2B software.",
   },
   "/contact": {
-    title: `Contact — ${SUFFIX}`,
+    title: `Contact — ${NAME}`,
     description:
       "Open to senior product design roles. Reach out directly by email or LinkedIn. No forms, no gatekeeping.",
   },
   "/resume": {
-    title: `Resume — ${SUFFIX}`,
+    title: `Resume — ${NAME}`,
     description:
       "Resume of Anastasia Novelly Moylan, Lead Experience Designer with 10+ years in enterprise product and AI design.",
   },
@@ -58,7 +57,7 @@ export function getPageMeta(pathname: string): PageMeta {
     if (project) {
       return {
         title: `${project.title} — ${NAME}`,
-        description: project.outcome,
+        description: `${project.tagline}. ${project.outcome}`,
         canonical,
       };
     }

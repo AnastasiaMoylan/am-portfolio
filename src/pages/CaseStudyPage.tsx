@@ -107,9 +107,9 @@ const caseStudyContent: Record<
     outcomeLabel: "Connected customer journey · Completed, April 2025",
     tldr: {
       challenge:
-        "A telecommunications client had predictive churn signals but no connected path from that signal to an action a customer service representative could actually execute.",
+        "A telecommunications operator had predictive churn signals but no connected path from a signal to an action anyone could execute.",
       solution:
-        "An end-to-end mitigation flow connecting churn detection, AI-assisted messaging, and human review into one journey, with an AI chatbot handling routine cases and escalating to a person when sentiment called for it.",
+        "One end-to-end mitigation flow: churn detection, AI-assisted messaging, and human review in a single journey, with an AI chatbot handling routine cases and escalating to a person when sentiment called for it.",
       win: "Turned a model score into a reviewed, edited, and launched action, with monitoring built in and human review required before anything reached a customer.",
     },
     snapshotFields: [
@@ -118,11 +118,11 @@ const caseStudyContent: Record<
       { label: "Tools", value: "Figma, FigJam" },
     ],
     context:
-      "A telecommunications client had predictive churn signals but no way to act on them. Analysts could see who was at risk of churning, but there was no connected path from that signal to a mitigation action a customer service representative could actually execute. The gap between a model score and a human taking the right action for the right customer was entirely undesigned.",
+      "A telecommunications operator needed to turn predictive signals into action across several channels: analysts, service teams, an AI layer, and the partner systems feeding it. I designed the connected journey that tied them together, from detection through human reviewed action to launch and monitoring.",
     ownership: [
-      "Designed a complex, data-driven customer journey platform connecting dynamic segmentation, predictive churn signals, sentiment and NPS health, journey drop-offs, AI-assisted messaging, offer customization, and performance monitoring.",
-      "Converted model output into decision support by pairing predictions with customer context, lifecycle stage, behavior, sentiment, and available actions instead of presenting an opaque score as a final answer.",
-      "Created an end-to-end mitigation flow from segment and risk detection through context review, human-selected action, message or offer adjustment, launch, monitoring, and iteration.",
+      "Designed the data-driven journey platform connecting dynamic segmentation, predictive churn signals, sentiment and NPS health, AI-assisted messaging, offer customization, and performance monitoring.",
+      "Turned model output into decision support: predictions paired with customer context, lifecycle stage, behavior, sentiment, and available actions, not an opaque score presented as a final answer.",
+      "Created the end-to-end mitigation flow: risk detection, context review, human-selected action, message or offer adjustment, launch, monitoring, iteration.",
       "Preserved human control by requiring users to review and edit AI-assisted communication before delivery.",
     ],
     keyDecisions: [
@@ -257,23 +257,41 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-function TldrBox({ tldr }: { tldr: Tldr }) {
+function OverviewCard({
+  tldr,
+  snapshotFields,
+}: {
+  tldr: Tldr;
+  snapshotFields: { label: string; value: string }[];
+}) {
   return (
-    <div className="bg-secondary border border-border rounded-md p-6 mb-12" aria-label="Case study summary">
-      <dl className="flex flex-col gap-4 m-0">
-        <div>
-          <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The challenge</dt>
-          <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.challenge}</dd>
+    <div className="border border-border rounded-md overflow-hidden mb-12" aria-label="Case study overview">
+      <div className="bg-secondary p-6">
+        <dl className="flex flex-col gap-4 m-0">
+          <div>
+            <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The challenge</dt>
+            <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.challenge}</dd>
+          </div>
+          <div>
+            <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The system solution</dt>
+            <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.solution}</dd>
+          </div>
+          <div>
+            <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The big win</dt>
+            <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.win}</dd>
+          </div>
+        </dl>
+      </div>
+      <div className="bg-card border-t border-border px-6 py-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {snapshotFields.map(({ label, value }) => (
+            <div key={label}>
+              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-1">{label}</p>
+              <p className="text-[0.9375rem] text-foreground">{value}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The system solution</dt>
-          <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.solution}</dd>
-        </div>
-        <div>
-          <dt className="text-[0.8125rem] font-semibold text-foreground mb-1">The big win</dt>
-          <dd className="text-[0.9375rem] text-muted-foreground leading-[1.65] m-0">{tldr.win}</dd>
-        </div>
-      </dl>
+      </div>
     </div>
   );
 }
@@ -344,20 +362,12 @@ export default function CaseStudyPage() {
           <h1 className="text-[clamp(1.75rem,4vw,3rem)] font-bold text-foreground leading-[1.15]">
             {project.title}
           </h1>
+          <p className="text-[clamp(1.0625rem,2vw,1.25rem)] font-medium text-muted-foreground leading-[1.5] mt-4">
+            {project.tagline}
+          </p>
         </div>
 
-        <TldrBox tldr={content.tldr} />
-
-        <div className="bg-card border border-border rounded-md px-8 py-6 mb-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {content.snapshotFields.map(({ label, value }) => (
-              <div key={label}>
-                <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-1">{label}</p>
-                <p className="text-[0.9375rem] text-foreground">{value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <OverviewCard tldr={content.tldr} snapshotFields={content.snapshotFields} />
 
         <div className="flex flex-col gap-12">
           {[

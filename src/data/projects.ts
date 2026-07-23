@@ -1,12 +1,16 @@
 export interface Project {
   slug: string;
   title: string;
+  /** Verb- and outcome-led line pairing with the short title on cards and the case-study header. */
+  tagline: string;
   problem: string;
   role: string;
   status: string;
   tags: string[];
   outcome: string;
   featuredOrder: number;
+  /** Hidden from the homepage featured grid; still listed on /work. */
+  hiddenOnHome?: boolean;
   filterCategories: string[];
   image?: string;
 }
@@ -19,7 +23,8 @@ export const projects: Project[] = [
   {
     slug: "governed-ai-finance-workspace",
     image: financeAIFlow,
-    title: "Designing a Governed AI Workspace for Enterprise Finance",
+    title: "A Governed AI Workspace for Finance",
+    tagline: "Reporting, forecasting, and month-end close in one governed AI platform",
     problem:
       "Finance teams needed AI-assisted analysis without losing the audit trails, governance controls, and human accountability that financial operations require. The risk: ship AI features that feel powerful but bypass controls, and the platform becomes a liability.",
     role: "Lead UX / Product Designer",
@@ -33,7 +38,8 @@ export const projects: Project[] = [
   {
     slug: "auditable-billing-workflow",
     image: cwoMvp1Workflow,
-    title: "Replacing Manual Billing-Package Assembly With an Auditable Workflow",
+    title: "An Auditable Billing Workflow",
+    tagline: "Replacing manual billing-package assembly to recover backlogged revenue",
     problem:
       "A telecommunications client's billing-package process was fragmented across tools, owned by no single role, and had no recovery path when automation failed. Work disappeared mid-process and nobody could tell where.",
     role: "Design Lead and UX / Product Strategy Lead",
@@ -46,7 +52,8 @@ export const projects: Project[] = [
   },
   {
     slug: "enterprise-document-knowledge",
-    title: "Making Enterprise AI Answers Verifiable Across Complex Documents",
+    title: "Verifiable AI Answers",
+    tagline: "Making enterprise AI answers verifiable across complex documents",
     problem:
       "Knowledge workers were getting AI-generated answers they couldn't verify: no source context, no way to compare documents side-by-side, no path back to the original evidence. Trust eroded fast.",
     role: "UX and Product Strategy Lead",
@@ -55,12 +62,14 @@ export const projects: Project[] = [
     outcome:
       "Research showed users preferred side-by-side comparison over tabs, so the navigation model changed based on that evidence. Sourced chat, inline citations, and an embedded PDF viewer kept every answer traceable back to its source.",
     featuredOrder: 4,
+    hiddenOnHome: true,
     filterCategories: ["AI and Trust", "B2B SaaS", "Research"],
   },
   {
     slug: "connected-customer-journey",
     image: ccjDashboard,
-    title: "Reducing Churn With a Connected Customer Journey Platform",
+    title: "The Connected Customer Journey",
+    tagline: "Reducing churn by connecting a fragmented customer journey",
     problem:
       "A telecommunications client had predictive churn signals but no way to act on them. The gap between a model score and a human taking the right action for the right customer was entirely undesigned.",
     role: "Senior UX Designer",

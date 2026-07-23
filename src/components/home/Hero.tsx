@@ -18,7 +18,7 @@ export default function Hero() {
             Designing end-to-end journeys people can trust.
           </h1>
           <p className="text-[clamp(1rem,2vw,1.125rem)] text-muted-foreground leading-[1.7] max-w-[46rem] mb-10">
-            I design the full path: from the first signal a customer or operator receives, through every handoff and decision point, to the final action that closes the loop. Every role in the flow and every state the system can be in are mapped and designed before a screen gets built.
+            I work where product development and engineering meet, designing platforms that many teams and products depend on. I map the whole journey&mdash;every role and state, including paths needing feedback. From first contact to final action, my focus is turning complex processes into something people can actually use.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
             <Button to="/work" variant="primary">
@@ -29,7 +29,7 @@ export default function Hero() {
             </Button>
           </div>
           <p className="text-sm text-muted-foreground">
-            Customer Journey Design &middot; End-to-End Workflows &middot; B2B SaaS &middot; Enterprise AI &middot; Design Systems
+            End-to-End Flows &middot; Journeys, Not Just Screens &middot; Data-Driven
           </p>
         </div>
       </div>
