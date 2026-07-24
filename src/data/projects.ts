@@ -65,7 +65,6 @@ export const projects: Project[] = [
     outcome:
       "Research showed users preferred side-by-side comparison over tabs, so the navigation model changed based on that evidence. Sourced chat, inline citations, and an embedded PDF viewer kept every answer traceable back to its source.",
     featuredOrder: 4,
-    hiddenOnHome: true,
     filterCategories: ["AI and Trust", "B2B SaaS", "Research"],
   },
   {
